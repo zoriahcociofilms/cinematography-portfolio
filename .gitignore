@@ -1,0 +1,21 @@
+node_modules/
+dist/
+.DS_Store
+.env
+.env.*
+!.env.example
+playwright-report/
+test-results/
+.local/
+*.tsbuildinfo
+# Generated from scripts/site-settings.mjs before dev/build.
+index.html
+work/
+about/
+wildlife/
+equipment/
+partnerships/
+contact/
+public/robots.txt
+public/sitemap.xml
+public/CNAME
