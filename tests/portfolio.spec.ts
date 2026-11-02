@@ -60,6 +60,10 @@ test("mobile menu traps focus, supports Escape, and returns focus", async ({
       .getByRole("link")
       .last(),
   ).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(
+    page.getByRole("button", { name: "Close navigation" }),
+  ).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).not.toBeVisible();
   await expect(button).toBeFocused();

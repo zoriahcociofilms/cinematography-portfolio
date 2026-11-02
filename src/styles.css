@@ -1454,7 +1454,7 @@ blockquote em {
 .contact-location {
   margin-top: 62px;
 }
-.contact-location > p {
+.contact-location > p:not(.eyebrow) {
   font-family: var(--serif);
   font-size: 34px;
   margin-top: 9px;
@@ -2698,7 +2698,7 @@ blockquote em {
   .contact-location {
     margin-top: 40px;
   }
-  .contact-location > p {
+  .contact-location > p:not(.eyebrow) {
     font-size: 32px;
   }
   .contact-location .tiny-label {

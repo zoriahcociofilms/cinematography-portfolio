@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Pause, Play, Maximize2, X } from "lucide-react";
 import { useReducedMotion } from "motion/react";
-import { asset } from "../lib";
+import { asset, cycleDialogFocus } from "../lib";
 import { site } from "../content/site";
 import type { Film, Still } from "../content/site";
 
@@ -228,6 +228,7 @@ export function Gallery({ stills }: { stills: Still[] }) {
           if (event.target === event.currentTarget) close();
         }}
         onKeyDown={(event) => {
+          cycleDialogFocus(event);
           if (event.key === "ArrowRight")
             setSelected((selected + 1) % stills.length);
           if (event.key === "ArrowLeft")

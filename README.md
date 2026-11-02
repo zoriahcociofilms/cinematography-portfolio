@@ -145,7 +145,7 @@ Once confirmed:
 
 1. Follow [GitHub’s current custom-domain instructions](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site), including domain verification. Read the current DNS targets there rather than relying on old hardcoded IP addresses.
 2. Set the repository Actions variable `CUSTOM_DOMAIN` to exactly `zoriahcociofilms.com`. The next build switches the Vite base to `/`, updates every canonical/OG/sitemap URL, and emits `CNAME` for the apex domain.
-3. Configure the apex domain and `www` using GitHub’s current instructions. Set the repository Pages custom domain to **`zoriahcociofilms.com`**, the primary apex; GitHub supports redirecting its configured `www` counterpart to the primary domain.
+3. Set the repository Pages custom domain to **`zoriahcociofilms.com`**, the primary apex, before changing DNS. Then configure the apex domain and `www` using GitHub’s current instructions. The `www` CNAME points to `zoriahcociofilms.github.io`, without a repository path. GitHub redirects the configured `www` counterpart to the primary domain. For Actions deployments, GitHub uses the repository Pages setting; the build’s CNAME file is informational and does not activate the domain.
 4. After DNS propagates and GitHub issues its certificate, enable **Enforce HTTPS** and verify both HTTPS domains, inner pages, images, and films. Keep `zoriahcocio.com` and its DNS entirely separate.
 
 To test the root-path artifact locally without changing DNS or any GitHub setting:

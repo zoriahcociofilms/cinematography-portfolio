@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { currentPage, href, navigation } from "../lib";
+import { currentPage, href, navigation, cycleDialogFocus } from "../lib";
 import { site } from "../content/site";
 import type { ReactNode } from "react";
 
@@ -69,6 +69,7 @@ export function Layout({ children }: { children: ReactNode }) {
         ref={dialog}
         className="mobile-menu"
         aria-label="Navigation"
+        onKeyDown={cycleDialogFocus}
         onCancel={(event) => {
           event.preventDefault();
           closeMenu();
