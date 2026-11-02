@@ -78,7 +78,6 @@ export function StockFigure({
       />
       <figcaption>
         <span>{photo.place}</span>
-        <span>Reference photograph</span>
       </figcaption>
     </figure>
   );
@@ -100,7 +99,7 @@ export function ReferenceFilm() {
           playsInline
           preload="none"
           poster={asset(film.poster)}
-          aria-label={`${film.title} — reference footage`}
+          aria-label={`${film.title} · ${film.place}`}
           aria-describedby="reference-film-description"
           onError={() => setFailed(true)}
         >
@@ -112,11 +111,9 @@ export function ReferenceFilm() {
         <span>
           {film.title} · {film.place}
         </span>
-        <span>Reference footage</span>
       </figcaption>
       <p id="reference-film-description" className="sr-only">
-        {film.description} This is public-domain reference footage, not a film
-        by Zoriah Cocio.
+        {film.description}
       </p>
     </figure>
   );

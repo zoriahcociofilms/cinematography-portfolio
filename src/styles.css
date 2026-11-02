@@ -1190,3 +1190,12 @@ svg {
     gap: 4px 15px;
   }
 }
+
+.about-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+}

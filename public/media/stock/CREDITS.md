@@ -1,6 +1,6 @@
 # Licensed stock photography
 
-These real photographs provide visual context for the site's design. **They are not photographs, film frames, productions, or portfolio work by Zoriah Cocio.** Visible photographer names and license links have been removed at the owner’s request. Source and license records are retained here; reference labels on the site distinguish these files from original work.
+These real photographs provide visual context for the site's design. **They are not photographs, film frames, productions, or portfolio work by Zoriah Cocio.** Visible photographer names and license links have been removed at the owner’s request. Source and license records are retained here; photo/video reference labels are also omitted at the owner’s request. These assets remain outside the original-film portfolio.
 
 | Local files                    | Photographer | Original source                                                                                                                        | Original publication | License                                          |
 | ------------------------------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------- | ------------------------------------------------ |

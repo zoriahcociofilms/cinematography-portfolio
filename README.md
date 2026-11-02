@@ -24,7 +24,7 @@ Open the URL printed by Vite, including `/cinematography-portfolio/`. The four p
 
 `src/content/site.ts` is the content desk: biography, philosophy, owned camera, equipment partnership copy, email, social links, original projects, and credited stock photography. Keep `site.hero` exactly **I wait for the world to forget the camera.**
 
-Add a real professional address to `site.email` to enable direct email, copy-email, and topic-specific inquiry links. The site deliberately shows an honest contact placeholder until then. Set the existing social URLs to show them; empty links are omitted. No nonfunctional contact form is displayed.
+The contact email is `info@zoriahcocio.com`, with direct email, copy-email, and topic-specific inquiry links enabled. Update `site.email` to change it. Set the existing social URLs to show them; empty links are omitted. No nonfunctional contact form is displayed.
 
 The About copy includes the bachelor's degree in Digital Cinematography, the owned Sony FX6, a patient observational philosophy, and conservation/environmental interests. Contact includes documentary collaborations and professional equipment partnerships. The Sony FE 400–800mm lens is clearly described as sought, not owned. No clients, credits, awards, affiliations, or completed films have been invented.
 
@@ -32,7 +32,7 @@ Edit the short page compositions in `src/pages.tsx`, design in `src/styles.css`,
 
 ## Photography and authenticity
 
-The Home and About photography is **licensed Arizona reference imagery**. Photographer names and license links are kept in project records rather than displayed on the pages, as requested. Small reference labels distinguish this imagery from original portfolio work. No AI imagery was generated, no watermark was removed, and no stock frame is represented as Zoriah's work.
+The Home photography is **licensed Arizona imagery**. The About page uses the profile picture supplied by Zoriah, stored at `public/media/stills/zoriah-cocio.jpg` and configured by `site.portrait`. Photographer names and license links are kept in project records rather than displayed on the pages, as requested. Photo/video reference labels are also omitted at the owner’s request; the stock media remains separate from Selected Work and is not assigned original film credits. No AI imagery was generated, no watermark was removed, and no stock frame is represented as Zoriah's work.
 
 See [the source and license inventory](public/media/stock/CREDITS.md). The current photographs were made in Tucson, Phoenix, and Saguaro National Park. Source pages and free licenses were verified November 2, 2026. Local WebP files and smaller responsive variants avoid runtime dependence on an external image CDN. Stock metadata is separate from `projects`; Selected Work contains only original published projects.
 
@@ -153,6 +153,6 @@ npx playwright install chromium
 npm test
 ```
 
-The existing Actions pipeline runs Playwright/axe at 390px, 768px, and 1440px before deployment. Checks cover all four pages, horizontal overflow, WCAG A/AA rules, exact signature wording, reference-image labels and omitted photographer names, separation of stock and original work, mobile menu keyboard behavior, contact authenticity, reduced motion, and legacy URL redirects. CI retains browser reports and screenshots.
+The existing Actions pipeline runs Playwright/axe at 390px, 768px, and 1440px before deployment. Checks cover all four pages, horizontal overflow, WCAG A/AA rules, exact signature wording, omitted reference labels and photographer names, the supplied About portrait, the working inquiry email and copy action, separation of stock and original work, mobile menu keyboard behavior, contact authenticity, reduced motion, and legacy URL redirects. CI retains browser reports and screenshots.
 
 For a production test, stop a dev server on port 4319 first so the test runner previews `dist/`. Lab checks do not establish field Core Web Vitals; those need real visitors. Keep future original media exports appropriately sized.

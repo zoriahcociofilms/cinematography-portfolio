@@ -4,6 +4,7 @@ import { projects, site, stock } from "./content/site";
 import { StockFigure, ReferenceFilm } from "./components/Media";
 import { ProjectDetail, ProjectGrid } from "./components/Projects";
 import { ContactCta, Eyebrow, PageIntro, TextLink } from "./components/Shared";
+import { asset } from "./lib";
 
 export function Home() {
   return (
@@ -33,13 +34,9 @@ export function Home() {
           <TextLink page="about">About me</TextLink>
         </div>
       </section>
-      <section
-        className="nature-section wrap"
-        aria-label="Arizona wildlife reference imagery"
-      >
+      <section className="nature-section wrap" aria-label="Arizona wildlife">
         <div className="nature-heading">
           <h2>Arizona wildlife</h2>
-          <p>Reference imagery. Original films live in Selected Work.</p>
         </div>
         <div className="nature-grid">
           <StockFigure
@@ -108,12 +105,16 @@ export function About() {
     <>
       <PageIntro title="About" />
       <section className="about-grid wrap">
-        <StockFigure
-          photo={stock.owl}
-          className="about-photo"
-          priority
-          sizes="(max-width: 760px) calc(100vw - 32px), 45vw"
-        />
+        <figure className="about-photo about-portrait">
+          <img
+            src={asset(site.portrait.src)}
+            alt={site.portrait.alt}
+            width={site.portrait.width}
+            height={site.portrait.height}
+            fetchPriority="high"
+            decoding="async"
+          />
+        </figure>
         <div className="about-copy">
           <h2>{site.name}</h2>
           <Eyebrow>Wildlife & documentary cinematographer</Eyebrow>

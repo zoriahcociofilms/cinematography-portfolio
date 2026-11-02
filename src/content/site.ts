@@ -99,7 +99,13 @@ export const site = {
       "https://www.nps.gov/media/video/view.htm?id=AF238FB1-2B01-43AD-B419-1DA263327DBB",
     license: "Public domain — NPS official-duty work, published June 6, 2012",
   },
-  email: "", // Add your professional email to enable inquiry links.
+  portrait: {
+    src: "media/stills/zoriah-cocio.jpg",
+    alt: "Zoriah Cocio smiling outdoors in a black cap",
+    width: 848,
+    height: 848,
+  },
+  email: "info@zoriahcocio.com",
   socials: [
     { label: "Instagram", url: "" },
     { label: "Vimeo", url: "" },

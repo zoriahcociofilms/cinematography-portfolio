@@ -38,7 +38,7 @@ for (const path of ["", "work/", "about/", "contact/"]) {
   });
 }
 
-test("signature remains exact beside Arizona reference photography", async ({
+test("signature remains exact with no reference labels", async ({
   page,
   baseURL,
 }) => {
@@ -50,20 +50,15 @@ test("signature remains exact beside Arizona reference photography", async ({
   await expect(signature).toBeVisible();
   await expect(page.locator(".opening-photo img")).toBeVisible();
   await expect(page.locator(".opening-photo figcaption")).toContainText(
-    "Reference photograph",
-  );
-  await expect(page.locator(".opening-photo figcaption")).toContainText(
     "Tucson, Arizona",
   );
   await expect(page.locator("iframe")).toHaveCount(0);
   await expect(page.locator("body")).not.toContainText(
     /Unsplash|License|JC Cervantes|Sidney Pearce|Royce Fonseca/,
   );
-  for (const figure of await page.locator('[data-provenance="stock"]').all()) {
-    await expect(figure.locator("figcaption")).toContainText(
-      "Reference photograph",
-    );
-  }
+  await expect(page.locator("body")).not.toContainText(
+    /reference (photo|photograph|footage|imagery)/i,
+  );
 });
 
 test("mobile navigation cycles focus and supports Escape", async ({
@@ -119,12 +114,28 @@ test("contact provides honest contact information and separates sought equipment
   baseURL,
 }) => {
   await page.goto(`${baseURL}contact/`);
-  if (site.email)
+  if (site.email) {
     await expect(page.locator(".email-link")).toHaveAttribute(
       "href",
       `mailto:${site.email}`,
     );
-  else {
+    await page
+      .context()
+      .grantPermissions(["clipboard-read", "clipboard-write"]);
+    await page
+      .getByRole("button", { name: "Copy email address", exact: true })
+      .click();
+    await expect(
+      page.getByRole("button", { name: "Email copied", exact: true }),
+    ).toBeVisible();
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+      site.email,
+    );
+    await expect(page.locator(".contact-context a").first()).toHaveAttribute(
+      "href",
+      `mailto:${site.email}?subject=${encodeURIComponent(site.inquiries[0])}`,
+    );
+  } else {
     await expect(page.getByText("Contact details coming soon.")).toBeVisible();
     await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
   }
@@ -135,6 +146,24 @@ test("contact provides honest contact information and separates sought equipment
   await expect(page.locator("#equipment")).toContainText(
     "Sony FX6 · Currently owned",
   );
+  const portrait = page.locator(".about-portrait img");
+  await expect(portrait).toHaveAttribute(
+    "src",
+    /media\/stills\/zoriah-cocio\.jpg$/,
+  );
+  await expect(portrait).toHaveAttribute("alt", site.portrait.alt);
+  await expect(portrait).toBeVisible();
+  await expect
+    .poll(() =>
+      portrait.evaluate((image: HTMLImageElement) => image.naturalWidth),
+    )
+    .toBe(848);
+  await expect(
+    page.locator('.about-grid [data-provenance="stock"]'),
+  ).toHaveCount(0);
+  await page.screenshot({
+    path: `test-results/about-${test.info().project.name}.png`,
+  });
 });
 
 for (const [legacy, target] of [
@@ -178,9 +207,6 @@ test("Arizona reference footage loads and plays without autoplay", async ({
   await expect(video).toHaveAttribute("controls", "");
   await expect(page.locator(".reference-film figcaption")).toContainText(
     "Grand Canyon, Arizona",
-  );
-  await expect(page.locator(".reference-film figcaption")).toContainText(
-    "Reference footage",
   );
   await video.evaluate(async (element: HTMLVideoElement) => {
     await element.play();
