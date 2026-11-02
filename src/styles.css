@@ -1140,3 +1140,53 @@ svg {
     transition: none !important;
   }
 }
+
+/* Reference media stays outside the original film portfolio. */
+.stock-figure figcaption {
+  align-items: baseline;
+  font-size: 10px;
+  gap: 12px;
+}
+.opening-photo img {
+  object-position: 50% 43%;
+}
+.nature-grid .stock-figure:first-child img {
+  object-position: 50% 68%;
+}
+.about-photo img {
+  object-position: 50% 68%;
+}
+.reference-film-section {
+  padding-top: 22px;
+}
+.reference-film video {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: #172018;
+  object-fit: contain;
+}
+.reference-film figcaption {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 10px;
+  line-height: 1.8;
+  color: #636a60;
+  padding-top: 11px;
+}
+@media (max-width: 640px) {
+  .opening-photo img {
+    object-position: 52% center;
+  }
+  .stock-figure figcaption,
+  .reference-film figcaption {
+    font-size: 8px;
+  }
+  .reference-film-section {
+    padding-top: 12px;
+  }
+  .reference-film figcaption {
+    flex-wrap: wrap;
+    gap: 4px 15px;
+  }
+}

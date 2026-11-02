@@ -38,7 +38,7 @@ for (const path of ["", "work/", "about/", "contact/"]) {
   });
 }
 
-test("signature remains exact, prominent, and beside visibly credited real photography", async ({
+test("signature remains exact beside Arizona reference photography", async ({
   page,
   baseURL,
 }) => {
@@ -50,17 +50,19 @@ test("signature remains exact, prominent, and beside visibly credited real photo
   await expect(signature).toBeVisible();
   await expect(page.locator(".opening-photo img")).toBeVisible();
   await expect(page.locator(".opening-photo figcaption")).toContainText(
-    "Stock photograph",
+    "Reference photograph",
   );
-  await expect(
-    page.locator(".opening-photo figcaption a").first(),
-  ).toHaveAttribute("href", /unsplash.com\/photos\//);
-  await expect(page.locator("video,iframe")).toHaveCount(0);
+  await expect(page.locator(".opening-photo figcaption")).toContainText(
+    "Tucson, Arizona",
+  );
+  await expect(page.locator("iframe")).toHaveCount(0);
+  await expect(page.locator("body")).not.toContainText(
+    /Unsplash|License|JC Cervantes|Sidney Pearce|Royce Fonseca/,
+  );
   for (const figure of await page.locator('[data-provenance="stock"]').all()) {
-    await expect(figure.locator("figcaption")).toContainText("Unsplash");
-    await expect(
-      figure.getByRole("link", { name: "License", exact: true }),
-    ).toHaveAttribute("href", "https://unsplash.com/license");
+    await expect(figure.locator("figcaption")).toContainText(
+      "Reference photograph",
+    );
   }
 });
 
@@ -161,5 +163,32 @@ test("reduced motion retains the static photographic homepage", async ({
     ),
   ).toBe("auto");
   await expect(page.locator(".opening-photo img")).toBeVisible();
-  await expect(page.locator("video")).toHaveCount(0);
+  await expect(page.locator("video")).toHaveCount(1);
+  await expect(page.locator("video")).not.toHaveAttribute("autoplay");
+});
+
+test("Arizona reference footage loads and plays without autoplay", async ({
+  page,
+  baseURL,
+}) => {
+  await page.goto(baseURL!);
+  const video = page.locator(".reference-film video");
+  await expect(video).toHaveAttribute("preload", "none");
+  await expect(video).not.toHaveAttribute("autoplay");
+  await expect(video).toHaveAttribute("controls", "");
+  await expect(page.locator(".reference-film figcaption")).toContainText(
+    "Grand Canyon, Arizona",
+  );
+  await expect(page.locator(".reference-film figcaption")).toContainText(
+    "Reference footage",
+  );
+  await video.evaluate(async (element: HTMLVideoElement) => {
+    await element.play();
+  });
+  await expect
+    .poll(() =>
+      video.evaluate((element: HTMLVideoElement) => element.currentTime),
+    )
+    .toBeGreaterThan(0);
+  await video.evaluate((element: HTMLVideoElement) => element.pause());
 });

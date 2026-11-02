@@ -38,41 +38,46 @@ export type StockPhoto = {
   author: string;
   source: string;
   license: string;
+  place: string;
 };
 
 // Licensed visual context. These photographs are never portfolio projects.
-export const stock: Record<"fox" | "owl" | "forest", StockPhoto> = {
-  fox: {
-    src: "media/stock/fox.webp",
-    small: "media/stock/fox-small.webp",
+export const stock: Record<"coyote" | "owl" | "desert", StockPhoto> = {
+  coyote: {
+    src: "media/stock/coyote.webp",
+    small: "media/stock/coyote-small.webp",
     width: 2400,
-    height: 1597,
-    alt: "A red fox watching quietly in winter snow, lit by the low sun",
-    author: "Ray Hennessy",
-    source: "https://unsplash.com/photos/brown-fox-on-snow-field-xUUZcpQlqpM",
+    height: 1349,
+    alt: "A coyote watching from desert scrub in Tucson, Arizona",
+    author: "JC Cervantes",
+    source:
+      "https://unsplash.com/photos/a-coyote-gazes-intensely-at-the-viewer-9xu-rhlMAOw",
     license: "https://unsplash.com/license",
+    place: "Tucson, Arizona",
   },
   owl: {
-    src: "media/stock/owl.webp",
-    small: "media/stock/owl-small.webp",
+    src: "media/stock/arizona-owl.webp",
+    small: "media/stock/arizona-owl-small.webp",
     width: 1800,
-    height: 1195,
-    alt: "An owl resting on a moss-covered branch in a green forest",
-    author: "Anurag Jain",
+    height: 2699,
+    alt: "An owl perched above the city among palms in Phoenix, Arizona",
+    author: "Sidney Pearce",
     source:
-      "https://unsplash.com/photos/shallow-focus-photography-of-gray-barn-owl-on-sitting-on-tree-branch-TtvhFe9anXA",
+      "https://unsplash.com/photos/gray-and-brown-owl-perching-on-black-wire-at-daytime-sim2K3Mjung",
     license: "https://unsplash.com/license",
+    place: "Phoenix, Arizona",
   },
-  forest: {
-    src: "media/stock/forest.webp",
-    small: "media/stock/forest-small.webp",
+  desert: {
+    src: "media/stock/arizona-desert.webp",
+    small: "media/stock/arizona-desert-small.webp",
     width: 2000,
-    height: 1380,
-    alt: "A still stream running between dense evergreen trees",
-    author: "Luca Bravo",
+    height: 2999,
+    alt: "Saguaro cacti growing on a rocky hillside in Saguaro National Park, Arizona",
+    author: "Royce Fonseca",
     source:
-      "https://unsplash.com/photos/body-of-water-surrounded-by-pine-trees-during-daytime-ESkw2ayO2As",
+      "https://unsplash.com/photos/saguaro-cacti-on-a-rocky-desert-hillside-8y9aDTeYqvU",
     license: "https://unsplash.com/license",
+    place: "Saguaro National Park, Arizona",
   },
 };
 
@@ -82,6 +87,18 @@ export const site = {
   location: "Arizona, USA",
   // Signature line: preserve this exact wording and punctuation.
   hero: "I wait for the world to forget the camera.",
+  referenceFilm: {
+    title: "Desert bighorn sheep",
+    place: "Grand Canyon, Arizona",
+    src: "media/stock/grand-canyon-bighorn.mp4",
+    poster: "media/stock/bighorn-poster.jpg",
+    description:
+      "A desert bighorn ewe rests on a canyon ledge, quietly chewing and observing her surroundings.",
+    author: "National Park Service / Michael Quinn",
+    source:
+      "https://www.nps.gov/media/video/view.htm?id=AF238FB1-2B01-43AD-B419-1DA263327DBB",
+    license: "Public domain — NPS official-duty work, published June 6, 2012",
+  },
   email: "", // Add your professional email to enable inquiry links.
   socials: [
     { label: "Instagram", url: "" },

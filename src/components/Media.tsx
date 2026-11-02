@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Play, Maximize2, X } from "lucide-react";
 import { asset, cycleDialogFocus } from "../lib";
+import { site } from "../content/site";
 import type { Film, Still, StockPhoto } from "../content/site";
 
 export function Artwork({
@@ -76,16 +77,47 @@ export function StockFigure({
         decoding="async"
       />
       <figcaption>
-        <span>
-          Stock photograph ·{" "}
-          <a href={photo.source} target="_blank" rel="noreferrer">
-            {photo.author} / Unsplash
-          </a>
-        </span>
-        <a href={photo.license} target="_blank" rel="noreferrer">
-          License
-        </a>
+        <span>{photo.place}</span>
+        <span>Reference photograph</span>
       </figcaption>
+    </figure>
+  );
+}
+
+export function ReferenceFilm() {
+  const [failed, setFailed] = useState(false);
+  const film = site.referenceFilm;
+  return (
+    <figure className="reference-film" data-provenance="reference-video">
+      {failed ? (
+        <p role="status" className="media-fallback">
+          This video is currently unavailable. Please try again later.
+        </p>
+      ) : (
+        <video
+          controls
+          muted
+          playsInline
+          preload="none"
+          poster={asset(film.poster)}
+          aria-label={`${film.title} — reference footage`}
+          aria-describedby="reference-film-description"
+          onError={() => setFailed(true)}
+        >
+          <source src={asset(film.src)} type="video/mp4" />
+          Your browser does not support this video.
+        </video>
+      )}
+      <figcaption>
+        <span>
+          {film.title} · {film.place}
+        </span>
+        <span>Reference footage</span>
+      </figcaption>
+      <p id="reference-film-description" className="sr-only">
+        {film.description} This is public-domain reference footage, not a film
+        by Zoriah Cocio.
+      </p>
     </figure>
   );
 }

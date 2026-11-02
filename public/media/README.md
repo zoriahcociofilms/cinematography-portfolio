@@ -10,4 +10,4 @@ Paths in the content configuration are relative to `public/`, without a leading 
 
 Export large original stills as WebP or AVIF, about 1600–2400px wide, with smaller mobile variants. Use truthful alt text and accurate captions. Film components use native controls and preload="none". Add captions for spoken content and provide a transcript when needed. Keep long masters outside the repository; use a permitted Vimeo/YouTube embed or a web-sized original file.
 
-All visible stock photography is locally hosted, with an explicit stock caption beside each image. No AI-generated imagery or borrowed footage is used. The original-film portfolio starts empty until actual films are supplied.
+All visible stock photography is locally hosted, with a small reference label beside each image. No AI-generated imagery or borrowed footage is used. The original-film portfolio starts empty until actual films are supplied.

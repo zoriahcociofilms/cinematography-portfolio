@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { projects, site, stock } from "./content/site";
-import { StockFigure } from "./components/Media";
+import { StockFigure, ReferenceFilm } from "./components/Media";
 import { ProjectDetail, ProjectGrid } from "./components/Projects";
 import { ContactCta, Eyebrow, PageIntro, TextLink } from "./components/Shared";
 
@@ -13,7 +13,7 @@ export function Home() {
         aria-label="An introduction to Zoriah Cocio"
       >
         <StockFigure
-          photo={stock.fox}
+          photo={stock.coyote}
           className="opening-photo"
           priority
           sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 1600px) calc(100vw - 96px), 1504px"
@@ -35,14 +35,11 @@ export function Home() {
       </section>
       <section
         className="nature-section wrap"
-        aria-label="Licensed nature photography"
+        aria-label="Arizona wildlife reference imagery"
       >
         <div className="nature-heading">
-          <h2>The natural world</h2>
-          <p>
-            Stock photography for visual context. Original films live in
-            Selected Work.
-          </p>
+          <h2>Arizona wildlife</h2>
+          <p>Reference imagery. Original films live in Selected Work.</p>
         </div>
         <div className="nature-grid">
           <StockFigure
@@ -50,10 +47,16 @@ export function Home() {
             sizes="(max-width: 640px) calc(100vw - 32px), 50vw"
           />
           <StockFigure
-            photo={stock.forest}
+            photo={stock.desert}
             sizes="(max-width: 640px) calc(100vw - 32px), 50vw"
           />
         </div>
+      </section>
+      <section
+        className="reference-film-section wrap"
+        aria-label="Arizona wildlife video"
+      >
+        <ReferenceFilm />
       </section>
       <ContactCta />
     </>
