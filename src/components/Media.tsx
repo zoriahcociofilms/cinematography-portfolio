@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play, Maximize2, X } from "lucide-react";
-import { useReducedMotion } from "motion/react";
+import { Play, Maximize2, X } from "lucide-react";
 import { asset, cycleDialogFocus } from "../lib";
-import { site } from "../content/site";
-import type { Film, Still } from "../content/site";
+import type { Film, Still, StockPhoto } from "../content/site";
 
 export function Artwork({
   src,
@@ -53,60 +51,42 @@ export function AssetLabel({
   );
 }
 
-export function HeroMedia() {
-  const reduce = useReducedMotion();
-  const player = useRef<HTMLVideoElement>(null);
-  const [playing, setPlaying] = useState(false);
-  const [videoFailed, setVideoFailed] = useState(false);
-  const media = site.heroMedia;
-  // No background download for reduced motion or data-saving connections.
-  const saveData = (
-    navigator as Navigator & { connection?: { saveData?: boolean } }
-  ).connection?.saveData;
-  const enabled = Boolean(media.video) && !reduce && !saveData && !videoFailed;
-  useEffect(() => {
-    if (enabled) player.current?.play().catch(() => setPlaying(false));
-  }, [enabled]);
+export function StockFigure({
+  photo,
+  className = "",
+  priority = false,
+  sizes = "100vw",
+}: {
+  photo: StockPhoto;
+  className?: string;
+  priority?: boolean;
+  sizes?: string;
+}) {
   return (
-    <>
-      <div className="hero-media" aria-hidden="true">
-        <Artwork src={media.poster} alt="" priority />
-        {enabled && (
-          <video
-            ref={player}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster={asset(media.poster)}
-            onPlay={() => setPlaying(true)}
-            onPause={() => setPlaying(false)}
-            onError={() => setVideoFailed(true)}
-          >
-            <source src={asset(media.video)} type={media.videoType} />
-          </video>
-        )}
-      </div>
-      {enabled && (
-        <button
-          className="video-toggle"
-          onClick={() => {
-            if (playing) player.current?.pause();
-            else player.current?.play().catch(() => setVideoFailed(true));
-          }}
-          aria-label={
-            playing ? "Pause background film" : "Play background film"
-          }
-        >
-          {playing ? (
-            <Pause size={15} aria-hidden="true" />
-          ) : (
-            <Play size={15} aria-hidden="true" />
-          )}
-        </button>
-      )}
-    </>
+    <figure className={`stock-figure ${className}`} data-provenance="stock">
+      <img
+        src={asset(photo.src)}
+        srcSet={`${asset(photo.small)} 800w, ${asset(photo.src)} ${photo.width}w`}
+        sizes={sizes}
+        width={photo.width}
+        height={photo.height}
+        alt={photo.alt}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding="async"
+      />
+      <figcaption>
+        <span>
+          Stock photograph ·{" "}
+          <a href={photo.source} target="_blank" rel="noreferrer">
+            {photo.author} / Unsplash
+          </a>
+        </span>
+        <a href={photo.license} target="_blank" rel="noreferrer">
+          License
+        </a>
+      </figcaption>
+    </figure>
   );
 }
 

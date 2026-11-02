@@ -19,50 +19,34 @@ export const pages = [
   {
     key: "home",
     path: "",
-    title: "Zoriah Cocio — Cinematographer & Visual Storyteller",
+    title: "Zoriah Cocio Films — Wildlife & Documentary Cinematography",
     description:
-      "Independent cinematographer and visual storyteller based in Arizona. Wildlife, natural history, documentary, and commercial filmmaking.",
+      "Zoriah Cocio, an Arizona-based cinematographer focused on wildlife, natural history, animal behavior, and environmental storytelling.",
   },
   {
     key: "work",
     path: "work",
-    title: "Selected Work — Zoriah Cocio",
+    title: "Selected Work — Zoriah Cocio Films",
     description:
-      "A home for original films, visual stories, field observations, and the process behind the frame. Original projects will be added here.",
+      "A curated space for original nature documentaries, wildlife films, showreels, and cinematography by Zoriah Cocio. Original films coming soon.",
   },
   {
     key: "about",
     path: "about",
-    title: "About — Zoriah Cocio",
+    title: "About — Zoriah Cocio Films",
     description:
-      "Meet Zoriah Cocio, an Arizona-based cinematographer with a fine arts background in digital cinematography and a focus on the natural world.",
-  },
-  {
-    key: "wildlife",
-    path: "wildlife",
-    title: "Wildlife & Natural History — Zoriah Cocio",
-    description:
-      "An approach to wildlife cinematography rooted in patience, intimate behavior, natural habitats, and environmental storytelling.",
-  },
-  {
-    key: "equipment",
-    path: "equipment",
-    title: "Equipment & Production — Zoriah Cocio",
-    description:
-      "A Sony FX6 camera platform for documentary and commercial filmmaking, with a clearly defined next step into long-lens wildlife cinematography.",
-  },
-  {
-    key: "partnerships",
-    path: "partnerships",
-    title: "Collaborations & Partnerships — Zoriah Cocio",
-    description:
-      "Explore documentary, wildlife, commercial, and professional equipment collaborations with independent cinematographer Zoriah Cocio.",
+      "Arizona-based cinematographer Zoriah Cocio: a bachelor’s degree in Digital Cinematography, a Sony FX6, and a patient approach to the natural world.",
   },
   {
     key: "contact",
     path: "contact",
-    title: "Contact — Zoriah Cocio",
+    title: "Contact — Zoriah Cocio Films",
     description:
-      "Start a conversation about a film, commission, documentary collaboration, or professional equipment partnership.",
+      "Professional inquiries, nature documentary collaborations, conservation stories, and equipment partnerships with cinematographer Zoriah Cocio.",
   },
+];
+export const legacyPages = [
+  { path: "wildlife", target: "about/#natural-history" },
+  { path: "equipment", target: "about/#equipment" },
+  { path: "partnerships", target: "contact/#partnerships" },
 ];

@@ -6,16 +6,10 @@ export const currentPage = () =>
     .replace(import.meta.env.BASE_URL, "")
     .replace(/^\/+|\/+$/g, "");
 export const navigation = [
-  { label: "Selected work", short: "Work", path: "work" },
-  { label: "About", short: "About", path: "about" },
-  { label: "Wildlife & natural history", short: "Wildlife", path: "wildlife" },
-  { label: "Equipment & production", short: "Equipment", path: "equipment" },
-  {
-    label: "Collaborations & partnerships",
-    short: "Partnerships",
-    path: "partnerships",
-  },
-  { label: "Contact", short: "Let’s talk", path: "contact" },
+  { label: "Home", path: "" },
+  { label: "Selected Work", path: "work" },
+  { label: "About", path: "about" },
+  { label: "Contact", path: "contact" },
 ];
 import type { KeyboardEvent } from "react";
 

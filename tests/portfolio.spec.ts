@@ -1,23 +1,15 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { projects, site } from "../src/content/site";
 
-for (const path of [
-  "",
-  "work/",
-  "about/",
-  "wildlife/",
-  "equipment/",
-  "partnerships/",
-  "contact/",
-]) {
-  test(`${path || "home"} loads directly, stays within the viewport, and has accessible structure`, async ({
+for (const path of ["", "work/", "about/", "contact/"]) {
+  test(`${path || "home"} loads directly with accessible structure and no overflow`, async ({
     page,
     baseURL,
   }) => {
     const failures: string[] = [];
     page.on("pageerror", (error) => failures.push(error.message));
-    const response = await page.goto(`${baseURL}${path}`);
-    expect(response?.status()).toBe(200);
+    expect((await page.goto(`${baseURL}${path}`))?.status()).toBe(200);
     await expect(page.locator("h1")).toHaveCount(1);
     expect(
       await page.evaluate(
@@ -28,93 +20,136 @@ for (const path of [
       "href",
       new RegExp(`/${path}$`),
     );
-    const scan = await new AxeBuilder({ page })
-      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
-      .analyze();
-    expect(scan.violations).toEqual([]);
+    expect(
+      (
+        await new AxeBuilder({ page })
+          .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+          .analyze()
+      ).violations,
+    ).toEqual([]);
     expect(failures).toEqual([]);
-    if (path === "") {
+    await expect(page.locator("body")).not.toContainText(
+      /wedding|engagement|portrait photography|event photography|event videography/i,
+    );
+    if (!path)
       await page.screenshot({
         path: `test-results/home-${test.info().project.name}.png`,
       });
-    }
   });
 }
 
-test("mobile menu traps focus, supports Escape, and returns focus", async ({
+test("signature remains exact, prominent, and beside visibly credited real photography", async ({
   page,
   baseURL,
 }) => {
   await page.goto(baseURL!);
-  const button = page.getByRole("button", { name: "Open navigation" });
-  if (!(await button.isVisible())) return;
-  await button.click();
-  await expect(page.getByRole("dialog", { name: "Navigation" })).toBeVisible();
+  const signature = page.getByRole("heading", { level: 1 });
+  await expect(signature).toHaveText(
+    "I wait for the world to forget the camera.",
+  );
+  await expect(signature).toBeVisible();
+  await expect(page.locator(".opening-photo img")).toBeVisible();
+  await expect(page.locator(".opening-photo figcaption")).toContainText(
+    "Stock photograph",
+  );
   await expect(
-    page.getByRole("button", { name: "Close navigation" }),
-  ).toBeFocused();
-  await page.keyboard.press("Shift+Tab");
-  await expect(
-    page
-      .getByRole("navigation", { name: "Mobile navigation" })
-      .getByRole("link")
-      .last(),
-  ).toBeFocused();
-  await page.keyboard.press("Tab");
-  await expect(
-    page.getByRole("button", { name: "Close navigation" }),
-  ).toBeFocused();
-  await page.keyboard.press("Escape");
-  await expect(page.getByRole("dialog")).not.toBeVisible();
-  await expect(button).toBeFocused();
+    page.locator(".opening-photo figcaption a").first(),
+  ).toHaveAttribute("href", /unsplash.com\/photos\//);
+  await expect(page.locator("video,iframe")).toHaveCount(0);
+  for (const figure of await page.locator('[data-provenance="stock"]').all()) {
+    await expect(figure.locator("figcaption")).toContainText("Unsplash");
+    await expect(
+      figure.getByRole("link", { name: "License", exact: true }),
+    ).toHaveAttribute("href", "https://unsplash.com/license");
+  }
 });
 
-test("portfolio filters and detail pages preserve honest placeholder content", async ({
+test("mobile navigation cycles focus and supports Escape", async ({
+  page,
+  baseURL,
+}) => {
+  await page.goto(baseURL!);
+  const open = page.getByRole("button", { name: "Open navigation" });
+  if (!(await open.isVisible())) {
+    await expect(
+      page
+        .getByRole("navigation", { name: "Main navigation" })
+        .getByRole("link"),
+    ).toHaveCount(4);
+    return;
+  }
+  await open.click();
+  const close = page.getByRole("button", { name: "Close navigation" });
+  await expect(close).toBeFocused();
+  const links = page
+    .getByRole("navigation", { name: "Mobile navigation" })
+    .getByRole("link");
+  await expect(links).toHaveCount(4);
+  await page.keyboard.press("Shift+Tab");
+  await expect(links.last()).toBeFocused();
+  await page.keyboard.press("Tab");
+  await expect(close).toBeFocused();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog")).not.toBeVisible();
+  await expect(open).toBeFocused();
+});
+
+test("Selected Work contains only original projects, never stock photographs", async ({
   page,
   baseURL,
 }) => {
   await page.goto(`${baseURL}work/`);
-  await page.getByRole("button", { name: "Documentary", exact: true }).click();
-  await expect(page.locator(".project-card")).toHaveCount(1);
-  await page
-    .getByRole("link", {
-      name: "Explore Documentary stories — project placeholder",
-    })
-    .click();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    "Documentary stories",
-  );
   await expect(
-    page.getByText("Original film to come", { exact: true }),
-  ).toBeVisible();
-  await expect(page.locator("iframe,video")).toHaveCount(0);
+    page.locator('[data-provenance="stock"], img[src*="/stock/"]'),
+  ).toHaveCount(0);
+  const published = projects.filter(
+    (project) => project.status === "published",
+  );
+  await expect(page.locator(".project-card")).toHaveCount(published.length);
+  if (!published.length)
+    await expect(
+      page.getByText("Original films are on their way."),
+    ).toBeVisible();
 });
 
-test("partnership details expand and contact does not fabricate an email", async ({
+test("contact provides honest contact information and separates sought equipment", async ({
   page,
   baseURL,
 }) => {
-  await page.goto(`${baseURL}partnerships/`);
-  const question = page.getByRole("button", {
-    name: "What to include in an inquiry",
-  });
-  await question.click();
-  await expect(question).toHaveAttribute("aria-expanded", "true");
-  await expect(
-    page.getByText(/A short introduction, the opportunity/),
-  ).toBeVisible();
   await page.goto(`${baseURL}contact/`);
-  await expect(page.getByText("Email details coming soon")).toBeVisible();
-  await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
-  await page
-    .getByRole("button", { name: "Equipment partnership", exact: true })
-    .click();
-  await expect(
-    page.getByRole("button", { name: "Equipment partnership", exact: true }),
-  ).toHaveAttribute("aria-pressed", "true");
+  if (site.email)
+    await expect(page.locator(".email-link")).toHaveAttribute(
+      "href",
+      `mailto:${site.email}`,
+    );
+  else {
+    await expect(page.getByText("Contact details coming soon.")).toBeVisible();
+    await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
+  }
+  await expect(page.locator("#partnerships")).toContainText(
+    "not currently part of my kit",
+  );
+  await page.goto(`${baseURL}about/`);
+  await expect(page.locator("#equipment")).toContainText(
+    "Sony FX6 · Currently owned",
+  );
 });
 
-test("reduced motion keeps the still-image hero and disables smooth scrolling", async ({
+for (const [legacy, target] of [
+  ["wildlife/", "about/#natural-history"],
+  ["equipment/", "about/#equipment"],
+  ["partnerships/", "contact/#partnerships"],
+]) {
+  test(`legacy ${legacy} preserves incoming links`, async ({
+    page,
+    baseURL,
+  }) => {
+    await page.goto(`${baseURL}${legacy}`);
+    await expect(page).toHaveURL(`${baseURL}${target}`);
+  });
+}
+
+test("reduced motion retains the static photographic homepage", async ({
   page,
   baseURL,
 }) => {
@@ -125,24 +160,6 @@ test("reduced motion keeps the still-image hero and disables smooth scrolling", 
       () => getComputedStyle(document.documentElement).scrollBehavior,
     ),
   ).toBe("auto");
-  await expect(page.locator(".hero-media video")).toHaveCount(0);
-  await expect(page.locator(".hero-media img")).toBeVisible();
-});
-
-test("gallery opens, navigates by keyboard, and returns focus", async ({
-  page,
-  baseURL,
-}) => {
-  await page.goto(`${baseURL}work/?project=wildlife`);
-  const opener = page.getByRole("button", {
-    name: /Enlarge image: Abstract olive light study/,
-  });
-  await opener.click();
-  const gallery = page.getByRole("dialog", { name: "Image gallery" });
-  await expect(gallery).toBeVisible();
-  await page.keyboard.press("ArrowRight");
-  await expect(gallery.getByText("2 / 2", { exact: true })).toBeVisible();
-  await page.keyboard.press("Escape");
-  await expect(gallery).not.toBeVisible();
-  await expect(opener).toBeFocused();
+  await expect(page.locator(".opening-photo img")).toBeVisible();
+  await expect(page.locator("video")).toHaveCount(0);
 });

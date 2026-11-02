@@ -13,7 +13,7 @@ for (const page of pages) {
 <html lang="en"><head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#141713" />
+<meta name="theme-color" content="#fcfbf8" />
 <title>${escape(page.title)}</title>
 <meta name="description" content="${escape(page.description)}" />
 <meta name="author" content="Zoriah Cocio" />
@@ -31,7 +31,7 @@ for (const page of pages) {
 <meta name="twitter:title" content="${escape(page.title)}" />
 <meta name="twitter:description" content="${escape(page.description)}" />
 <meta name="twitter:image" content="${siteRoot}media/social-card.png" />
-<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Person", name: "Zoriah Cocio", url: siteRoot, jobTitle: "Cinematographer & Visual Storyteller", homeLocation: { "@type": "Place", name: "Arizona, USA" }, description: pages[0].description })}</script>
+<script type="application/ld+json">${JSON.stringify({ "@context": "https://schema.org", "@type": "Person", name: "Zoriah Cocio", url: siteRoot, jobTitle: "Wildlife & documentary cinematographer", homeLocation: { "@type": "Place", name: "Arizona, USA" }, description: pages[0].description })}</script>
 </head><body><div id="root"></div><noscript>This portfolio requires JavaScript to display. Zoriah Cocio is a cinematographer and visual storyteller based in Arizona, USA.</noscript><script type="module" src="/src/main.tsx"></script></body></html>`;
   if (page.path) await mkdir(page.path, { recursive: true });
   await writeFile(`${page.path ? `${page.path}/` : ""}index.html`, html);

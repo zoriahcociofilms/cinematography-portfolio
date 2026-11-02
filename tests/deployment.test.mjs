@@ -22,9 +22,9 @@ test("confirmed custom domain switches media and pages to the root", () => {
 test("unapproved domains cannot accidentally activate", () => {
   assert.throws(() => resolveDeployment({ CUSTOM_DOMAIN: "example.com" }));
 });
-test("all seven pages have unique paths and metadata", () => {
-  assert.equal(pages.length, 7);
-  assert.equal(new Set(pages.map((page) => page.path)).size, 7);
-  assert.equal(new Set(pages.map((page) => page.title)).size, 7);
+test("all four pages have unique paths and metadata", () => {
+  assert.equal(pages.length, 4);
+  assert.equal(new Set(pages.map((page) => page.path)).size, 4);
+  assert.equal(new Set(pages.map((page) => page.title)).size, 4);
   assert.ok(pages.every((page) => page.description.length > 60));
 });

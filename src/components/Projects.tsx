@@ -53,15 +53,21 @@ export function ProjectCard({
 
 export function ProjectGrid({ limit }: { limit?: number }) {
   const [filter, setFilter] = useState("All");
-  const options = ["All", "Wildlife", "Documentary", "Commercial"];
+  const published = projects.filter(
+    (project) => project.status === "published",
+  );
+  const options = [
+    "All",
+    ...new Set(published.map((project) => project.category)),
+  ];
   const entries = (
     filter === "All"
-      ? projects
-      : projects.filter((project) => project.category === filter)
+      ? published
+      : published.filter((project) => project.category === filter)
   ).slice(0, limit);
   return (
     <>
-      {!limit && (
+      {!limit && options.length > 2 && (
         <div className="work-filters" role="group" aria-label="Filter projects">
           {options.map((option) => (
             <button
@@ -71,7 +77,7 @@ export function ProjectGrid({ limit }: { limit?: number }) {
             >
               {option}
               {option === "All" && (
-                <sup>{projects.length.toString().padStart(2, "0")}</sup>
+                <sup>{published.length.toString().padStart(2, "0")}</sup>
               )}
             </button>
           ))}
@@ -115,7 +121,9 @@ export function ProjectDetail({ project }: { project: Project }) {
         <div className="project-detail-art">
           <Artwork src={project.cover.src} alt={project.cover.alt} priority />
           {project.cover.temporary && <AssetLabel />}
-          <span className="no-film-label">Original film to come</span>
+          {project.status === "placeholder" && (
+            <span className="no-film-label">Original film to come</span>
+          )}
         </div>
       )}
       <div className="project-context">

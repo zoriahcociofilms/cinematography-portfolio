@@ -1,66 +1,61 @@
-# Zoriah Cocio — Cinematography Portfolio
+# Zoriah Cocio Films
 
-An independent filmmaker’s editorial home: dark olive, warm ivory, considered typography, original abstract light studies, and space for the moving image.
+A minimal, photographic portfolio for wildlife, natural history, and documentary cinematography. Built in the existing React / TypeScript / Vite / Tailwind project, with the existing GitHub Pages Actions workflow and base-path policy.
 
-**Account:** `zoriahcociofilms`  
-**Repository:** `cinematography-portfolio`  
-**Initial URL:** https://zoriahcociofilms.github.io/cinematography-portfolio/  
-**Future primary domain:** `zoriahcociofilms.com` (prepared, not activated)
+**Signature line:** “I wait for the world to forget the camera.”  
+**Live target:** https://zoriahcociofilms.github.io/cinematography-portfolio/  
+**Repository:** https://github.com/zoriahcociofilms/cinematography-portfolio
 
-## Start locally
+## Run and build
 
-Use Node.js 24 LTS and npm. No paid service, API key, subscription, or backend is needed.
+Use Node.js 24 LTS and npm. No paid API, subscription, or backend is required.
 
 ```sh
 npm ci
 npm run dev
-```
-
-Open the URL printed by Vite, including `/cinematography-portfolio/`.
-
-```sh
 npm run test:config
 npm run build
 npm run preview
 ```
 
-## Your content desk
+Open the URL printed by Vite, including `/cinematography-portfolio/`. The four pages are Home, Selected Work, About, and Contact. The former wildlife/equipment/partnerships URLs redirect to the relevant section of About or Contact. Production entry points have individual SEO titles, descriptions, canonical URLs, Open Graph metadata, and a sitemap. A custom 404 page preserves the site navigation.
 
-Edit **`src/content/site.ts`** to update your biography, camera equipment, partnership copy, contact email, social URLs, homepage video, and project list. All seven pages share this configuration. Empty email/social values deliberately display “coming soon”; no invented address or dead social link is published. Adding a real email enables mail links, copy-email, and a topic-specific inquiry link. The inquiry opens the visitor’s email app; this is not a form submission service.
+## Edit content
 
-Primary homepage wording and short editorial headings are in `src/pages.tsx`. SEO titles and descriptions live in `scripts/site-settings.mjs`. Static HTML metadata, canonical URLs, sitemap, and robots.txt are generated before every dev session and production build; do not edit generated HTML.
+`src/content/site.ts` is the content desk: biography, philosophy, owned camera, equipment partnership copy, email, social links, original projects, and credited stock photography. Keep `site.hero` exactly **I wait for the world to forget the camera.**
 
-### Replace temporary artwork
+Add a real professional address to `site.email` to enable direct email, copy-email, and topic-specific inquiry links. The site deliberately shows an honest contact placeholder until then. Set the existing social URLs to show them; empty links are omitted. No nonfunctional contact form is displayed.
 
-The initial site contains **no stock photography, AI wildlife imagery, or borrowed film footage**. Its SVG light studies are original code-drawn abstract design assets, not Zoriah’s filmmaking work. Every visible use is labeled. The About portrait is also a clearly labeled placeholder. The FX6 feature is typography, not a borrowed product photograph.
+The About copy includes the bachelor's degree in Digital Cinematography, the owned Sony FX6, a patient observational philosophy, and conservation/environmental interests. Contact includes documentary collaborations and professional equipment partnerships. The Sony FE 400–800mm lens is clearly described as sought, not owned. No clients, credits, awards, affiliations, or completed films have been invented.
 
-1. Put your original photos and poster frames in `public/media/stills/`.
-2. Put short web-ready video files and caption tracks in `public/media/films/`.
-3. Set the corresponding paths in `src/content/site.ts`, relative to `public/`, **without a leading slash**. Example: `media/stills/river-poster.webp`.
-4. Replace descriptive alt text and captions. Set `temporary: false` only for your actual original assets.
-5. Replace the portrait study in `src/pages.tsx` with your portrait, remove its temporary label and initials, and add accurate alt text.
+Edit the short page compositions in `src/pages.tsx`, design in `src/styles.css`, and SEO text in `scripts/site-settings.mjs`. Do not hand-edit generated HTML files. The redesign has no reveal animations, autoplay background video, or large marketing sections.
 
-`public/media/README.md` has export and performance guidance. Abstract gallery examples remain labeled temporary artwork. They demonstrate the gallery without inventing field imagery.
+## Photography and authenticity
 
-### Add an original film
+The Home and About photography is **licensed stock visual context**, visibly labeled and credited to Ray Hennessy, Anurag Jain, and Luca Bravo on Unsplash. Each photograph links to its original source and license. No AI imagery was generated, no watermark was removed, and no stock frame is represented as Zoriah's work.
 
-Replace an entry in `projects` (or append another). Keep a unique `id`, which forms the shareable URL `work/?project=your-id`. Set `status: 'published'` only for a real project and include only accurate production information. For a self-hosted film:
+See [the source and license inventory](public/media/stock/CREDITS.md). The photographs were originally published in 2016/2018; the source pages and free licenses were verified November 2, 2026. Local WebP files and smaller responsive variants avoid runtime dependence on an external image CDN. Stock metadata is separate from `projects`; Selected Work contains only original published projects.
+
+The original film portfolio is intentionally empty until actual footage and credits are provided. The earlier abstract assets remain in `public/media/placeholders/` for source continuity but are no longer displayed. The typographic social preview has no borrowed photo or film-credit claim. The visual reference informed layout restraint only; none of its images, text, credits, or business offerings were copied.
+
+## Add an original film
+
+Place original poster frames/stills in `public/media/stills/`, and web-ready video/caption files in `public/media/films/`. Use paths relative to `public/`, with no leading slash. Append an entry to `projects`:
 
 ```ts
 {
   id: 'your-film',
-  title: 'Your real film title',
-  category: 'Wildlife', // or 'Documentary' / 'Commercial'
+  title: 'Your actual film title',
+  category: 'Wildlife', // Natural history / Documentary / Conservation / Commercial
   status: 'published',
   year: '2026',
-  summary: 'A short, accurate introduction.',
-  description: 'The context and story of your film.',
-  role: 'Cinematographer', // only your actual role
+  summary: 'An accurate, short introduction.',
+  description: 'The story and production context.',
+  role: 'Cinematographer', // Your actual role only
   cover: {
     src: 'media/stills/your-film.webp',
-    alt: 'Describe the original frame.',
-    caption: 'An accurate frame caption.',
-    temporary: false,
+    alt: 'A descriptive account of the original frame.',
+    caption: 'An accurate caption.',
   },
   film: {
     kind: 'file',
@@ -69,40 +64,32 @@ Replace an entry in `projects` (or append another). Keep a unique `id`, which fo
     captions: 'media/films/your-film.en.vtt',
   },
   technical: [{ label: 'Camera', value: 'Sony FX6' }],
-  behindTheScenes: 'An accurate account of the production.',
-  gallery: [{
-    src: 'media/stills/your-frame.webp',
-    alt: 'Describe what is visible.',
-    caption: 'An accurate frame caption.',
-  }],
+  gallery: [],
+  behindTheScenes: 'Optional, accurate production notes.',
 }
 ```
 
-For embeds use `film: { kind: 'vimeo', id: 'YOUR_NUMERIC_VIDEO_ID', title: 'Your film title' }` or `{ kind: 'youtube', id: 'YOUR_VIDEO_ID', title: 'Your film title' }`. Videos load only after the visitor clicks “Load film,” with a disclosure about the provider. Vimeo uses `dnt=1`; YouTube uses its privacy-enhanced domain. Account privacy settings must allow embedding. No external film is currently configured.
+Only `published` entries appear. A project is shareable at `work/?project=your-film`. Categories filter automatically when more than one is present. Do not use stock imagery as an original-project cover or gallery frame.
 
-The responsive gallery supports enlargement, next/previous buttons, arrow keys, Escape, focus return, and native dialog focus containment. Add caption tracks for spoken audio and provide an accessible transcript where needed.
+For an existing upload use `film: { kind: 'vimeo', id: 'VIDEO_ID', title: 'Your film title' }`, or `kind: 'youtube'`. Embeds load only after a visitor clicks Load film, with a provider disclosure. Native video uses controls, preload="none", and optional WebVTT captions. Provide transcripts and captions when needed. Reusable galleries support keyboard navigation, Escape, native dialog focus containment, and focus return. Keep long masters outside the repository and respect GitHub's file/Pages limits.
 
-### Homepage background video
-
-Set `heroMedia.video` and its MIME type. Replace `heroMedia.poster` with a matching original still. Set `temporary: false` when original material replaces the temporary art. The background is muted, loops, plays inline, and has a pause/play control. Reduced-motion and data-saving users receive the poster without a video download. Failed video playback retains the still.
-
-## Pages and architecture
-
-Seven real static entry points (`/`, `/work/`, `/about/`, `/wildlife/`, `/equipment/`, `/partnerships/`, `/contact/`) render the shared React application. Direct links and refreshes work on GitHub Pages; there is no hash-router workaround. Each page has its own title, description, canonical URL, and Open Graph tags. A custom 404 page displays the same design system with a recovery link. Project query links intentionally use the work page’s canonical URL.
+## Source organization
 
 ```text
-src/content/site.ts       Personal copy, projects, contact, equipment, media
-src/components/           Shared layout, media, project and editorial components
-src/pages.tsx             Page compositions and short headings
-src/styles.css            Editorial design and responsive breakpoints
-scripts/site-settings.mjs Hosting policy and page metadata
-scripts/prepare-pages.mjs Static HTML, sitemap, robots and optional CNAME
-public/media/             Original uploads and labeled temporary assets
-tests/                    Responsive/accessibility and deployment tests
-.github/workflows/        Build, browser checks, and GitHub Pages publication
+src/content/site.ts       Personal copy, original films, stock credits
+src/components/           Layout, original-project, video and gallery components
+src/pages.tsx             Four concise page compositions
+src/styles.css            Responsive editorial design
+scripts/site-settings.mjs Existing hosting policy and page metadata
+scripts/prepare-pages.mjs Static HTML, sitemap and robots generation
+scripts/finalize-build.mjs 404 page and legacy-path redirects
+public/media/stock/       Licensed contextual images and credit inventory
+public/media/stills/      Your original stills and film posters
+public/media/films/       Your original web-ready films and captions
+.github/workflows/        Existing test/build/GitHub Pages pipeline
 ```
 
-React, TypeScript, Vite, Tailwind CSS, Motion, Lucide. Fonts are bundled locally: Cormorant Garamond and Manrope, with SIL Open Font License notices in `public/fonts/`. No font CDN, analytics, trackers, or remote media requests are needed for the initial site. The generated 1200×630 social card is a typographic identity asset and makes no film-credit claim.
+Fonts are bundled locally, with SIL Open Font License notices in `public/fonts/`. The site does not load analytics or tracking scripts. Existing Motion and Lucide dependencies are preserved; the redesigned pages use no animation runtime.
 
 ## Deploy only to the filmmaking account
 
@@ -166,10 +153,6 @@ npx playwright install chromium
 npm test
 ```
 
-The browser suite exercises direct page loads, horizontal overflow, page metadata, WCAG A/AA checks, mobile menu keyboard behavior, project filtering/detail links, partnership accordions, contact placeholders, gallery navigation, and reduced-motion behavior. CI installs the browser and OS dependencies automatically. For a strict production test, stop any dev server already using port 4319 before running the suite so its preview server uses `dist/`.
+The existing Actions pipeline runs Playwright/axe at 390px, 768px, and 1440px before deployment. Checks cover all four pages, horizontal overflow, WCAG A/AA rules, exact signature wording, visible stock credits, separation of stock and original work, mobile menu keyboard behavior, contact authenticity, reduced motion, and legacy URL redirects. CI retains browser reports and screenshots.
 
-Lab checks are not field Core Web Vitals. There are no field metrics until real visitors use the deployed site. Original media size, third-party embeds, hosting, and visitors’ devices will affect real performance.
-
-## Product references
-
-Equipment copy is grounded in [Sony’s FX6 specifications](https://electronics.sony.com/imaging/cinema-line-cameras/all-cinema-line-cameras/p/ilmefx6v) and [Sony’s FE 400–800mm announcement](https://sony.mediaroom.com/2025-02-26-Sony-Electronics-Unveils-Specialty-400-800mm-F6-3-8-G-OSS-Super-Telephoto-Zoom-G-Lens-The-Furthest-Reaching-Sony-Lens-To-Date). The FX6 is owned; the lens is being sought through a professional partnership and is **not** listed as owned. No Sony affiliation, sponsorship, client, award, or completed production is implied.
+For a production test, stop a dev server on port 4319 first so the test runner previews `dist/`. Lab checks do not establish field Core Web Vitals; those need real visitors. Keep future original media exports appropriately sized.
