@@ -15,27 +15,31 @@ export function ProjectCard({
 }) {
   return (
     <article className="project-card">
-      <a
-        href={`${href("work")}?project=${encodeURIComponent(project.id)}`}
-        className="project-image"
-        aria-label={`Explore ${project.title}${project.status === "placeholder" ? " — project placeholder" : ""}`}
-      >
-        <Artwork src={project.cover.src} alt={project.cover.alt} />
-        {project.cover.temporary && (
-          <AssetLabel>Temporary design artwork</AssetLabel>
-        )}
-        <span className="project-open">
-          <ArrowUpRight size={24} strokeWidth={1.25} aria-hidden="true" />
-        </span>
-      </a>
+      {project.film?.kind === "file" ? (
+        <FilmPlayer film={project.film} />
+      ) : (
+        <a
+          href={`${href("work")}?project=${encodeURIComponent(project.id)}`}
+          className="project-image"
+          aria-label={`Explore ${project.title}${project.status === "placeholder" ? " — project placeholder" : ""}`}
+        >
+          <Artwork src={project.cover.src} alt={project.cover.alt} />
+          {project.cover.temporary && (
+            <AssetLabel>Temporary design artwork</AssetLabel>
+          )}
+          <span className="project-open">
+            <ArrowUpRight size={24} strokeWidth={1.25} aria-hidden="true" />
+          </span>
+        </a>
+      )}
       <div className="project-caption">
         <span className="project-index">0{index + 1}</span>
         <div>
           <p className="project-category">
-            {project.category} /{" "}
+            {project.category}
             {project.status === "placeholder"
-              ? "Original film to come"
-              : project.year}
+              ? " / Original film to come"
+              : project.year && ` / ${project.year}`}
           </p>
           <h3>
             <a
@@ -107,10 +111,10 @@ export function ProjectDetail({ project }: { project: Project }) {
       </a>
       <header>
         <Eyebrow>
-          {project.category} /{" "}
+          {project.category}
           {project.status === "placeholder"
-            ? "Project placeholder"
-            : project.year}
+            ? " / Project placeholder"
+            : project.year && ` / ${project.year}`}
         </Eyebrow>
         <h1>{project.title}</h1>
         <p className="intro-description">{project.summary}</p>

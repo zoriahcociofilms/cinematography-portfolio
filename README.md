@@ -26,9 +26,9 @@ Open the URL printed by Vite, including `/cinematography-portfolio/`. The four p
 
 The contact email is `info@zoriahcocio.com`, with direct email, copy-email, and topic-specific inquiry links enabled. Update `site.email` to change it. Set the existing social URLs to show them; empty links are omitted. No nonfunctional contact form is displayed.
 
-The About copy includes the bachelor's degree in Digital Cinematography, the owned Sony FX6, a patient observational philosophy, and conservation/environmental interests. Contact includes documentary collaborations and professional equipment partnerships. The Sony FE 400–800mm lens is clearly described as sought, not owned. No clients, credits, awards, affiliations, or completed films have been invented.
+The About page includes the bachelor's degree in Digital Cinematography, Sony FX6 ownership and operation, approximately four years of professional cinematography experience, professional Sony Alpha / Canon EOS / Nikon DSLR experience, and domestic/international wildlife and natural-history availability. Contact includes documentary collaborations and professional equipment partnerships. The Sony FE 400–800mm lens is clearly described as sought, not owned. No clients, credits, awards, affiliations, or completed films have been invented.
 
-Edit the short page compositions in `src/pages.tsx`, design in `src/styles.css`, and SEO text in `scripts/site-settings.mjs`. Do not hand-edit generated HTML files. The pages have no reveal animations, autoplay background video, or large marketing sections. The homepage is photographic only; the borrowed NPS video has been removed until original footage is ready.
+Edit the short page compositions in `src/pages.tsx`, design in `src/styles.css`, and SEO text in `scripts/site-settings.mjs`. Do not hand-edit generated HTML files. The pages have no reveal animations, autoplay background video, or large marketing sections. The homepage is photographic only; the borrowed NPS video remains removed. Original footage is presented only in Selected Work.
 
 ## Photography and authenticity
 
@@ -36,7 +36,7 @@ The Home photography is **licensed Arizona imagery**. The About page uses the pr
 
 See [the source and license inventory](public/media/stock/CREDITS.md). The current photographs show a coyote and hovering broad-billed hummingbird in Tucson, and a mule deer in its red rock habitat in Sedona. Source pages, camera metadata, and free licenses were verified November 2, 2026. Local WebP files and smaller responsive variants avoid runtime dependence on an external image CDN. Stock metadata is separate from `projects`; Selected Work contains only original published projects. Earlier stock files remain in the media library for source continuity and are not displayed.
 
-The original film portfolio is intentionally empty until actual footage and credits are provided. The earlier abstract assets remain in `public/media/placeholders/` for source continuity but are no longer displayed. The typographic social preview has no borrowed photo or film-credit claim. The visual reference informed layout restraint only; none of its images, text, credits, or business offerings were copied.
+Selected Work now features five original clips supplied by Zoriah. Each title and description was based on frames inspected throughout its actual footage. Posters are extracted frames from those clips. No filming dates, locations, camera systems, production credits, or capture-resolution claims have been assigned. See [the original-footage inventory](public/media/films/README.md) for file mappings, measured export properties, and replacement instructions. The earlier abstract assets remain in `public/media/placeholders/` for source continuity but are no longer displayed. The typographic social preview has no borrowed photo or film-credit claim. The visual reference informed layout restraint only; none of its images, text, credits, or business offerings were copied.
 
 ## Add an original film
 
@@ -61,6 +61,9 @@ Place original poster frames/stills in `public/media/stills/`, and web-ready vid
     kind: 'file',
     src: 'media/films/your-film.mp4',
     poster: 'media/stills/your-film.webp',
+    title: 'Your film title — a descriptive accessible label',
+    width: 1920, // Actual supplied-file dimensions; do not guess.
+    height: 1080,
     captions: 'media/films/your-film.en.vtt',
   },
   technical: [{ label: 'Camera', value: 'Sony FX6' }],
@@ -71,7 +74,7 @@ Place original poster frames/stills in `public/media/stills/`, and web-ready vid
 
 Only `published` entries appear. A project is shareable at `work/?project=your-film`. Categories filter automatically when more than one is present. Do not use stock imagery as an original-project cover or gallery frame.
 
-For an existing upload use `film: { kind: 'vimeo', id: 'VIDEO_ID', title: 'Your film title' }`, or `kind: 'youtube'`. Embeds load only after a visitor clicks Load film, with a provider disclosure. Native video uses controls, preload="none", and optional WebVTT captions. Provide transcripts and captions when needed. Reusable galleries support keyboard navigation, Escape, native dialog focus containment, and focus return. Keep long masters outside the repository and respect GitHub's file/Pages limits.
+For an existing upload use `film: { kind: 'vimeo', id: 'VIDEO_ID', title: 'Your film title' }`, or `kind: 'youtube'`. Embeds load only after a visitor clicks Load film, with a provider disclosure. Native video uses controls, playsInline, preload="metadata", descriptive accessible labels, original aspect ratios, a size cap at the supplied resolution, and optional WebVTT captions. It never autoplays. Native players appear directly in the existing two-column Selected Work grid and on shareable project pages. Provide transcripts and captions when needed. Reusable galleries support keyboard navigation, Escape, native dialog focus containment, and focus return. Keep long masters outside the repository and respect GitHub's file/Pages limits.
 
 ## Source organization
 
@@ -89,7 +92,7 @@ public/media/films/       Your original web-ready films and captions
 .github/workflows/        Existing test/build/GitHub Pages pipeline
 ```
 
-Fonts are bundled locally, with SIL Open Font License notices in `public/fonts/`. The site does not load analytics or tracking scripts. The original-project `FilmPlayer` remains available for future original footage; no video is currently rendered or requested on the homepage. Existing Motion and Lucide dependencies are preserved; the pages use no animation runtime.
+Fonts are bundled locally, with SIL Open Font License notices in `public/fonts/`. The site does not load analytics or tracking scripts. The original-project `FilmPlayer` presents the five supplied clips; no video is currently rendered or requested on the homepage. Existing Motion and Lucide dependencies are preserved; the pages use no animation runtime.
 
 ## Deploy only to the filmmaking account
 
@@ -153,6 +156,6 @@ npx playwright install chromium
 npm test
 ```
 
-The existing Actions pipeline runs Playwright/axe at 390px, 768px, and 1440px before deployment. Checks cover all four pages, horizontal overflow, WCAG A/AA rules, exact signature wording, omitted reference labels and photographer names, the supplied About portrait, the working inquiry email and copy action, separation of stock and original work, replacement wildlife image loading, absence of homepage video, mobile menu keyboard behavior, contact authenticity, reduced motion, and legacy URL redirects. CI retains browser reports and screenshots, including full-page homepage views.
+The existing Actions pipeline runs Playwright/axe at 390px, 768px, and 1440px before deployment. Checks cover all four pages, horizontal overflow, WCAG A/AA rules, exact signature wording, omitted reference labels and photographer names, the supplied About portrait, the working inquiry email and copy action, separation of stock and original work, playback and metadata for every original clip, all five shareable project routes, replacement wildlife image loading, absence of homepage video, mobile menu keyboard behavior, contact authenticity, reduced motion, and legacy URL redirects. CI retains browser reports and screenshots, including full-page homepage views.
 
 For a production test, stop a dev server on port 4319 first so the test runner previews `dist/`. Lab checks do not establish field Core Web Vitals; those need real visitors. Keep future original media exports appropriately sized.

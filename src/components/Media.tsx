@@ -87,7 +87,13 @@ export function FilmPlayer({ film }: { film: Film }) {
   const [error, setError] = useState(false);
   if (film.kind === "file")
     return (
-      <div className="film-player">
+      <div
+        className="film-player"
+        style={{
+          aspectRatio: `${film.width} / ${film.height}`,
+          maxWidth: film.width,
+        }}
+      >
         {error ? (
           <p className="player-message" role="status">
             This film could not be loaded. Please try again later.
@@ -96,11 +102,14 @@ export function FilmPlayer({ film }: { film: Film }) {
           <video
             controls
             playsInline
-            preload="none"
+            preload="metadata"
             poster={asset(film.poster)}
+            aria-label={film.title}
+            width={film.width}
+            height={film.height}
             onError={() => setError(true)}
           >
-            <source src={asset(film.src)} />
+            <source src={asset(film.src)} type="video/mp4" />
             {film.captions && (
               <track
                 default

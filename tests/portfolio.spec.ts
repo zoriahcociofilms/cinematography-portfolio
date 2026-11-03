@@ -144,7 +144,7 @@ test("contact provides honest contact information and separates sought equipment
   );
   await page.goto(`${baseURL}about/`);
   await expect(page.locator("#equipment")).toContainText(
-    "Sony FX6 · Currently owned",
+    "Sony FX6 · Owner & operator",
   );
   const portrait = page.locator(".about-portrait img");
   await expect(portrait).toHaveAttribute(
@@ -164,6 +164,86 @@ test("contact provides honest contact information and separates sought equipment
   await page.screenshot({
     path: `test-results/about-${test.info().project.name}.png`,
   });
+});
+
+test("original wildlife clips retain native playback and shareable project pages", async ({
+  page,
+  baseURL,
+}) => {
+  test.setTimeout(60_000);
+  await page.goto(`${baseURL}work/`);
+  const films = projects.filter(
+    (project) =>
+      project.status === "published" && project.film?.kind === "file",
+  );
+  const players = page.locator(".project-card video");
+  expect(films).toHaveLength(5);
+  await expect(players).toHaveCount(films.length);
+  await expect(page.getByText("Original films are on their way.")).toHaveCount(
+    0,
+  );
+  await expect(page.locator(".work-page")).not.toContainText(/4K|2026|Arizona/);
+  for (const project of films) {
+    if (project.film?.kind !== "file") continue;
+    const film = project.film;
+    const video = page.getByLabel(film.title, { exact: true });
+    await video.scrollIntoViewIfNeeded();
+    await expect(video).toHaveAttribute("controls", "");
+    await expect(video).toHaveAttribute("playsinline", "");
+    await expect(video).toHaveAttribute("preload", "metadata");
+    await expect(video).not.toHaveAttribute("autoplay");
+    await expect(video).toHaveAttribute(
+      "poster",
+      `${new URL(baseURL!).pathname}${film.poster}`,
+    );
+    await expect
+      .poll(() =>
+        video.evaluate((element: HTMLVideoElement) => ({
+          width: element.videoWidth,
+          height: element.videoHeight,
+        })),
+      )
+      .toEqual({ width: film.width, height: film.height });
+    expect(
+      await video.evaluate((element) => element.getBoundingClientRect().width),
+    ).toBeLessThanOrEqual(film.width);
+    expect(
+      await video.evaluate((element: HTMLVideoElement) =>
+        element.canPlayType('video/mp4; codecs="avc1.640028"'),
+      ),
+    ).not.toBe("");
+    await expect(video).toHaveJSProperty("paused", true);
+  }
+  await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
+  await page.screenshot({
+    path: `test-results/work-${test.info().project.name}.png`,
+    fullPage: true,
+  });
+  for (const project of films) {
+    if (project.film?.kind !== "file") continue;
+    const video = page.getByLabel(project.film.title, { exact: true });
+    await video.evaluate(async (element: HTMLVideoElement) => {
+      element.muted = true;
+      await element.play();
+    });
+    await expect
+      .poll(() =>
+        video.evaluate((element: HTMLVideoElement) => element.currentTime),
+      )
+      .toBeGreaterThan(0);
+    await video.evaluate((element: HTMLVideoElement) => element.pause());
+  }
+  for (const project of films) {
+    if (project.film?.kind !== "file") continue;
+    await page.goto(`${baseURL}work/?project=${project.id}`);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(
+      project.title,
+    );
+    await expect(
+      page.getByLabel(project.film.title, { exact: true }),
+    ).toBeVisible();
+    await expect(page.locator(".technical-grid")).toHaveCount(0);
+  }
 });
 
 for (const [legacy, target] of [

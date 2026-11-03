@@ -129,7 +129,7 @@ export function About() {
             </div>
             <div>
               <dt>Camera</dt>
-              <dd>{site.equipment.owned} · Currently owned</dd>
+              <dd>{site.equipment.owned} · Owner & operator</dd>
             </div>
             <div>
               <dt>Based in</dt>
