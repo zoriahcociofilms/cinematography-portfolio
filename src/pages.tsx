@@ -112,18 +112,15 @@ export function About() {
         </figure>
         <div className="about-copy">
           <h2>{site.name}</h2>
-          <Eyebrow>Wildlife & documentary cinematographer</Eyebrow>
+          <Eyebrow>Wildlife & Documentary Cinematography</Eyebrow>
           {site.biography.map((paragraph) => (
             <p key={paragraph}>{paragraph}</p>
           ))}
           <section id="natural-history" className="about-philosophy">
             <h3>A patient approach</h3>
-            <p>{site.philosophy}</p>
-            <p>
-              I’m interested in conservation and environmental storytelling,
-              alongside select documentary and commercial projects that share
-              this creative direction.
-            </p>
+            {site.philosophy.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </section>
           <dl id="equipment" className="about-facts">
             <div>

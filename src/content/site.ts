@@ -99,11 +99,13 @@ export const site = {
     { label: "Vimeo", url: "" },
   ],
   biography: [
-    "I’m Zoriah Cocio, a cinematographer based in Arizona with a bachelor’s degree in Digital Cinematography. My work begins with an interest in the natural world: animal behavior, the texture of a habitat, and the small moments that reveal a larger story.",
-    "Working with a Sony FX6, I’m developing a body of work in wildlife, natural history, and nature documentary filmmaking. I’m particularly drawn to intimate observations and stories that deepen our connection to animals and their environments.",
+    "I’m an Arizona-based cinematographer. My work is guided by a fascination with the natural world and the quiet details that often go unnoticed.",
+    "I’m especially drawn to wildlife and natural-history filmmaking—the behaviors, environments, and fleeting moments that reveal something extraordinary about the animals we share this world with.",
   ],
-  philosophy:
-    "For me, cinematography begins with observation. I want to give a moment room to unfold, respect the animal’s space, and let the environment remain part of the story.",
+  philosophy: [
+    "I believe the most meaningful moments are rarely staged. They happen when we give the world enough space to simply exist.",
+    "Through my work, I hope to document those moments with patience, curiosity, and respect for the natural world.",
+  ],
   equipment: { owned: "Sony FX6", seeking: "Sony FE 400–800mm f/6.3–8 G OSS" },
   partnership:
     "I’m exploring professional equipment partnerships involving the Sony FE 400–800mm f/6.3–8 G OSS lens to expand my wildlife cinematography. This lens is not currently part of my kit. I welcome a conversation about a thoughtfully scoped field project and shared creative goals.",

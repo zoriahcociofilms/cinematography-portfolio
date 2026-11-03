@@ -411,9 +411,9 @@ svg {
 }
 .about-copy > p,
 .about-philosophy > p {
-  font-size: 14px;
+  font-size: 15px;
   color: #535d4d;
-  line-height: 1.95;
+  line-height: 1.85;
   margin-top: 19px;
 }
 .about-philosophy {
