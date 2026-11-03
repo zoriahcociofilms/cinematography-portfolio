@@ -86,7 +86,7 @@ svg {
   margin-inline: auto;
 }
 .eyebrow {
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
@@ -99,7 +99,7 @@ svg {
   min-height: 44px;
   border-bottom: 1px solid #8c9885;
   padding: 10px 0 8px;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.5;
   width: fit-content;
 }
@@ -145,7 +145,7 @@ svg {
   letter-spacing: -0.025em;
 }
 .wordmark > span:last-child {
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.065em;
   color: var(--muted);
 }
@@ -155,7 +155,7 @@ svg {
   align-items: center;
 }
 .desktop-nav a {
-  font-size: 11px;
+  font-size: 13px;
   min-height: 44px;
   display: flex;
   align-items: center;
@@ -216,7 +216,7 @@ svg {
   color: #526847;
 }
 .menu-location {
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 35px;
 }
@@ -230,7 +230,7 @@ svg {
   display: flex;
   justify-content: space-between;
   gap: 20px;
-  font-size: 10px;
+  font-size: 11px;
   color: #62685d;
   line-height: 1.8;
   padding-top: 10px;
@@ -244,12 +244,12 @@ svg {
   color: #263a21;
 }
 .opening-photo img {
-  aspect-ratio: 2.15;
-  object-position: 50% 31%;
+  aspect-ratio: 2.05;
+  object-position: 50% 43%;
 }
 .signature-block {
   text-align: center;
-  padding: 44px 12px 34px;
+  padding: 28px 12px 22px;
 }
 .signature-block h1 {
   font-size: clamp(30px, 3.1vw, 43px);
@@ -259,21 +259,21 @@ svg {
   margin-inline: auto;
 }
 .signature-block > p {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
   color: var(--muted);
-  margin-top: 18px;
+  margin-top: 14px;
 }
 .home-intro {
   max-width: 760px;
   text-align: center;
-  padding: 26px 0 92px;
+  padding: 14px 0 44px;
 }
 .home-intro > p {
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.9;
-  max-width: 530px;
+  max-width: 590px;
   margin-inline: auto;
   color: #575f51;
 }
@@ -281,17 +281,17 @@ svg {
   display: flex;
   justify-content: center;
   gap: 35px;
-  margin-top: 21px;
+  margin-top: 17px;
 }
 .nature-section {
-  padding-bottom: 35px;
+  padding-bottom: 12px;
 }
 .nature-heading {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 30px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 .nature-heading h2 {
   font-size: 28px;
@@ -310,13 +310,16 @@ svg {
   aspect-ratio: 1.5;
   object-fit: cover;
 }
+.nature-grid .hummingbird-photo img {
+  object-position: 50% 62%;
+}
 .contact-cta {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   border-top: 1px solid var(--line);
-  margin-top: 65px;
+  margin-top: 48px;
   padding-block: 40px 55px;
 }
 .contact-cta > p {
@@ -331,7 +334,7 @@ svg {
   gap: 20px;
   border-top: 1px solid var(--line);
   padding-block: 28px 32px;
-  font-size: 9px;
+  font-size: 11px;
   color: #646c5e;
 }
 .site-footer > div {
@@ -351,7 +354,7 @@ svg {
   letter-spacing: -0.02em;
 }
 .page-intro > p {
-  font-size: 12px;
+  font-size: 14px;
   max-width: 520px;
   color: var(--muted);
   margin-top: 17px;
@@ -371,7 +374,7 @@ svg {
   margin-top: 20px;
 }
 .work-empty p:not(.eyebrow) {
-  font-size: 12px;
+  font-size: 14px;
   color: #626b5b;
   line-height: 1.9;
   margin-top: 20px;
@@ -403,12 +406,12 @@ svg {
   margin-bottom: 13px;
 }
 .about-copy > .eyebrow {
-  font-size: 9px;
+  font-size: 11px;
   margin-bottom: 27px;
 }
 .about-copy > p,
 .about-philosophy > p {
-  font-size: 12px;
+  font-size: 14px;
   color: #535d4d;
   line-height: 1.95;
   margin-top: 19px;
@@ -433,7 +436,7 @@ svg {
   display: grid;
   grid-template-columns: 85px 1fr;
   gap: 15px;
-  font-size: 11px;
+  font-size: 12px;
   padding-block: 9px;
   line-height: 1.8;
 }
@@ -460,12 +463,12 @@ svg {
 }
 .contact-placeholder > span {
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 12px;
 }
 .location {
-  font-size: 11px;
+  font-size: 12px;
   color: #626c5a;
   margin-top: 40px;
 }
@@ -473,7 +476,7 @@ svg {
   display: flex;
   gap: 25px;
   margin-top: 20px;
-  font-size: 11px;
+  font-size: 12px;
 }
 .social-links a {
   text-decoration: underline;
@@ -490,7 +493,7 @@ svg {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 10px;
+  font-size: 12px;
   color: #5f7053;
   margin-top: 12px;
 }
@@ -506,7 +509,7 @@ svg {
   margin: 0;
 }
 .contact-context li {
-  font-size: 12px;
+  font-size: 14px;
   color: #59654f;
   padding-block: 10px;
   border-bottom: 1px solid var(--line);
@@ -520,12 +523,12 @@ svg {
   margin-top: 34px;
 }
 .partnership-note h3 {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
   margin-bottom: 15px;
 }
 .partnership-note p {
-  font-size: 11px;
+  font-size: 13px;
   color: #68715f;
   line-height: 1.9;
 }
@@ -820,11 +823,6 @@ svg {
   min-height: 180px;
   font-size: 12px;
 }
-@media (min-width: 1600px) {
-  .opening-photo img {
-    aspect-ratio: 2.3;
-  }
-}
 @media (max-width: 1000px) {
   .wrap {
     width: calc(100% - 64px);
@@ -836,10 +834,10 @@ svg {
     font-size: 26px;
   }
   .wordmark > span:last-child {
-    font-size: 8px;
+    font-size: 10px;
   }
   .opening-photo img {
-    aspect-ratio: 1.7;
+    aspect-ratio: 1.85;
   }
   .signature-block h1 {
     font-size: 37px;
@@ -859,7 +857,7 @@ svg {
   }
   .about-facts > div {
     grid-template-columns: 65px 1fr;
-    font-size: 10px;
+    font-size: 12px;
   }
   .contact-grid {
     gap: 7%;
@@ -897,14 +895,14 @@ svg {
   }
   .about-copy > p,
   .about-philosophy > p {
-    font-size: 13px;
+    font-size: 14px;
   }
   .about-copy > .eyebrow {
-    font-size: 9px;
+    font-size: 11px;
   }
   .about-facts > div {
     grid-template-columns: 85px 1fr;
-    font-size: 11px;
+    font-size: 12px;
   }
   .contact-grid {
     grid-template-columns: 1fr;
@@ -927,21 +925,21 @@ svg {
     font-size: 27px;
   }
   .wordmark > span:last-child {
-    font-size: 8px;
+    font-size: 9px;
     letter-spacing: 0.01em;
   }
   .opening-photo img {
-    aspect-ratio: 0.94;
-    object-position: 39% center;
+    aspect-ratio: 1.2;
+    object-position: 52% center;
   }
   .stock-figure figcaption {
-    font-size: 9px;
+    font-size: 11px;
     gap: 13px;
     padding-top: 9px;
     line-height: 1.9;
   }
   .signature-block {
-    padding: 32px 9px 25px;
+    padding: 24px 9px 18px;
   }
   .signature-block h1 {
     font-size: 31px;
@@ -949,15 +947,15 @@ svg {
     max-width: 355px;
   }
   .signature-block > p {
-    font-size: 7px;
+    font-size: 9px;
     letter-spacing: 0.105em;
-    margin-top: 17px;
+    margin-top: 13px;
   }
   .home-intro {
-    padding: 15px 12px 58px;
+    padding: 10px 8px 34px;
   }
   .home-intro > p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.9;
   }
   .home-intro > div {
@@ -965,7 +963,7 @@ svg {
     margin-top: 17px;
   }
   .text-link {
-    font-size: 11px;
+    font-size: 13px;
     gap: 12px;
   }
   .nature-heading h2 {
@@ -1000,7 +998,7 @@ svg {
     flex-shrink: 0;
   }
   .site-footer {
-    font-size: 8px;
+    font-size: 10px;
     gap: 15px;
     padding-block: 24px;
   }
@@ -1014,7 +1012,7 @@ svg {
     font-size: 36px;
   }
   .page-intro > p {
-    font-size: 12px;
+    font-size: 14px;
     margin-top: 15px;
   }
   .work-empty {
@@ -1028,14 +1026,14 @@ svg {
     line-height: 1.2;
   }
   .work-empty .eyebrow {
-    font-size: 9px;
+    font-size: 11px;
   }
   .work-empty p:not(.eyebrow) {
-    font-size: 11px;
+    font-size: 13px;
     max-width: 290px;
   }
   .work-empty .text-link {
-    font-size: 10px;
+    font-size: 12px;
   }
   .about-grid {
     gap: 32px;
@@ -1045,7 +1043,7 @@ svg {
   }
   .about-copy > p,
   .about-philosophy > p {
-    font-size: 12px;
+    font-size: 14px;
   }
   .about-photo img {
     aspect-ratio: 1.12;
@@ -1055,7 +1053,7 @@ svg {
     font-size: 25px;
   }
   .about-facts > div {
-    font-size: 10px;
+    font-size: 12px;
     gap: 15px;
     grid-template-columns: 70px 1fr;
   }
@@ -1071,10 +1069,10 @@ svg {
     font-size: 27px;
   }
   .contact-context li {
-    font-size: 11px;
+    font-size: 13px;
   }
   .partnership-note p {
-    font-size: 11px;
+    font-size: 13px;
   }
   .location {
     margin-top: 30px;
@@ -1138,56 +1136,6 @@ svg {
     scroll-behavior: auto !important;
     animation: none !important;
     transition: none !important;
-  }
-}
-
-/* Reference media stays outside the original film portfolio. */
-.stock-figure figcaption {
-  align-items: baseline;
-  font-size: 10px;
-  gap: 12px;
-}
-.opening-photo img {
-  object-position: 50% 43%;
-}
-.nature-grid .stock-figure:first-child img {
-  object-position: 50% 68%;
-}
-.about-photo img {
-  object-position: 50% 68%;
-}
-.reference-film-section {
-  padding-top: 22px;
-}
-.reference-film video {
-  width: 100%;
-  aspect-ratio: 16/9;
-  background: #172018;
-  object-fit: contain;
-}
-.reference-film figcaption {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  font-size: 10px;
-  line-height: 1.8;
-  color: #636a60;
-  padding-top: 11px;
-}
-@media (max-width: 640px) {
-  .opening-photo img {
-    object-position: 52% center;
-  }
-  .stock-figure figcaption,
-  .reference-film figcaption {
-    font-size: 8px;
-  }
-  .reference-film-section {
-    padding-top: 12px;
-  }
-  .reference-film figcaption {
-    flex-wrap: wrap;
-    gap: 4px 15px;
   }
 }
 

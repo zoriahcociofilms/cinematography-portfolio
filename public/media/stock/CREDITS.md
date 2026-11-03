@@ -16,15 +16,26 @@ The Unsplash License allows free commercial and noncommercial use, subject to it
 
 Edit `src/content/site.ts` to change stock sources or personal content. Add only Zoriah's original footage and stills to the `projects` array. Never reuse a stock image as a project cover or film frame attributed to Zoriah.
 
-## Current Arizona media
+## Current Arizona photography
+
+| Files | Photographer / source | Location | Camera / publication | Rights |
+| --- | --- | --- | --- | --- |
+| coyote.webp, coyote-small.webp | JC Cervantes — [source](https://unsplash.com/photos/a-coyote-gazes-intensely-at-the-viewer-9xu-rhlMAOw) | Tucson, Arizona | Sony ILCE-6700 / March 24, 2025 | [Unsplash License](https://unsplash.com/license) |
+| arizona-hummingbird.webp, arizona-hummingbird-small.webp | Mark Olsen — [source](https://unsplash.com/photos/a-hummingbird-flying-in-the-air-with-a-green-background-FYj2gAyNRCw) | Tucson, Arizona | Canon EOS R5 / May 7, 2023 | [Unsplash License](https://unsplash.com/license) |
+| sedona-deer.webp, sedona-deer-small.webp | Lance Anderson — [source](https://unsplash.com/photos/a-deer-stands-amidst-red-rock-landscape-vrXuF6f37B4) | Sedona, Arizona | Fujifilm X-T2 / April 28, 2025 | [Unsplash License](https://unsplash.com/license) |
+
+The hummingbird is a broad-billed hummingbird in flight. The Sedona composition shows a mule deer pausing in grassland beneath red rock cliffs. Both replacement source pages explicitly identify these as free photographs and include physical-camera metadata, photographer identity, and Arizona location. The optimized WebP derivatives preserve the photographs without generating or retouching content. The hummingbird is cropped to a 4:3 composition around the bird; CSS makes a small responsive crop for each screen. The Sedona photograph retains its source composition. No watermark was added or removed. Full-width files are 1800px wide, with 800px responsive variants. Source image IDs: `photo-1683470432347-7b40520fb583` and `photo-1745882094241-fedae9f6a29d` on images.unsplash.com.
+
+Current sources and licenses were verified November 2, 2026. No visible photographer names or reference labels have been reintroduced. Stock photography remains outside Selected Work and has no original-film credits.
+
+## Earlier Arizona media — not displayed
 
 | Files                                          | Creator / source                                                                                                                          | Location                            | Rights                                                      |
 | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- | ----------------------------------------------------------- |
-| coyote.webp, coyote-small.webp                 | JC Cervantes — [source](https://unsplash.com/photos/a-coyote-gazes-intensely-at-the-viewer-9xu-rhlMAOw), March 24, 2025, Sony ILCE-6700   | Tucson, Arizona                     | [Unsplash License](https://unsplash.com/license)            |
 | arizona-owl.webp, arizona-owl-small.webp       | Sidney Pearce — [source](https://unsplash.com/photos/gray-and-brown-owl-perching-on-black-wire-at-daytime-sim2K3Mjung), September 6, 2018 | Phoenix, Arizona                    | [Unsplash License](https://unsplash.com/license)            |
 | arizona-desert.webp, arizona-desert-small.webp | Royce Fonseca — [source](https://unsplash.com/photos/saguaro-cacti-on-a-rocky-desert-hillside-8y9aDTeYqvU), November 8, 2025              | Saguaro National Park, Arizona      | [Unsplash License](https://unsplash.com/license)            |
 | grand-canyon-bighorn.mp4, bighorn-poster.jpg   | NPS Video: Michael Quinn — [source](https://www.nps.gov/media/video/view.htm?id=AF238FB1-2B01-43AD-B419-1DA263327DBB), June 6, 2012       | Grand Canyon National Park, Arizona | Public domain: NPS official-duty media, no copyright symbol |
 
-The wildlife video is an 82.875-second, 1280×720 H.264 MP4 with an audio track. It is provided as manually played reference footage, not a production or credit of Zoriah Cocio. The source page explicitly offers it as b-roll and states the public-domain rule for NPS-credited media. The local source was the official 720p MP4, `https://www.nps.gov/nps-audiovideo/audiovideo/919664dd-b22a-4e77-a318-513dda6de6a3720p.mp4`. Its poster is the corresponding NPS thumbnail. No third-party player or advertising is embedded.
+The earlier wildlife video is an 82.875-second, 1280×720 H.264 MP4 with an audio track. It has been removed from the homepage at the owner's request. Its component and content configuration have also been removed; the homepage renders no video and makes no requests for this file. The unused file and provenance remain in the media library for source continuity. It is not a production or credit of Zoriah Cocio. The source page offers it as b-roll and states the public-domain rule for NPS-credited media. The original local source was the official 720p MP4, `https://www.nps.gov/nps-audiovideo/audiovideo/919664dd-b22a-4e77-a318-513dda6de6a3720p.mp4`. Its poster is the corresponding NPS thumbnail.
 
 All current Arizona source and rights records were checked November 2, 2026. Unsplash attribution is optional under its license. No NPS logo or endorsement is used. No names or license links are currently displayed in the photo captions; the owner will manage future public attributions.

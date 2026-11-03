@@ -42,7 +42,7 @@ export type StockPhoto = {
 };
 
 // Licensed visual context. These photographs are never portfolio projects.
-export const stock: Record<"coyote" | "owl" | "desert", StockPhoto> = {
+export const stock: Record<"coyote" | "hummingbird" | "deer", StockPhoto> = {
   coyote: {
     src: "media/stock/coyote.webp",
     small: "media/stock/coyote-small.webp",
@@ -55,29 +55,29 @@ export const stock: Record<"coyote" | "owl" | "desert", StockPhoto> = {
     license: "https://unsplash.com/license",
     place: "Tucson, Arizona",
   },
-  owl: {
-    src: "media/stock/arizona-owl.webp",
-    small: "media/stock/arizona-owl-small.webp",
+  hummingbird: {
+    src: "media/stock/arizona-hummingbird.webp",
+    small: "media/stock/arizona-hummingbird-small.webp",
     width: 1800,
-    height: 2699,
-    alt: "An owl perched above the city among palms in Phoenix, Arizona",
-    author: "Sidney Pearce",
+    height: 1350,
+    alt: "A broad-billed hummingbird hovering with its wings extended in Tucson, Arizona",
+    author: "Mark Olsen",
     source:
-      "https://unsplash.com/photos/gray-and-brown-owl-perching-on-black-wire-at-daytime-sim2K3Mjung",
+      "https://unsplash.com/photos/a-hummingbird-flying-in-the-air-with-a-green-background-FYj2gAyNRCw",
     license: "https://unsplash.com/license",
-    place: "Phoenix, Arizona",
+    place: "Tucson, Arizona",
   },
-  desert: {
-    src: "media/stock/arizona-desert.webp",
-    small: "media/stock/arizona-desert-small.webp",
-    width: 2000,
-    height: 2999,
-    alt: "Saguaro cacti growing on a rocky hillside in Saguaro National Park, Arizona",
-    author: "Royce Fonseca",
+  deer: {
+    src: "media/stock/sedona-deer.webp",
+    small: "media/stock/sedona-deer-small.webp",
+    width: 1800,
+    height: 1200,
+    alt: "A mule deer pausing in open grassland beneath the red rock cliffs of Sedona, Arizona",
+    author: "Lance Anderson",
     source:
-      "https://unsplash.com/photos/saguaro-cacti-on-a-rocky-desert-hillside-8y9aDTeYqvU",
+      "https://unsplash.com/photos/a-deer-stands-amidst-red-rock-landscape-vrXuF6f37B4",
     license: "https://unsplash.com/license",
-    place: "Saguaro National Park, Arizona",
+    place: "Sedona, Arizona",
   },
 };
 
@@ -87,18 +87,6 @@ export const site = {
   location: "Arizona, USA",
   // Signature line: preserve this exact wording and punctuation.
   hero: "I wait for the world to forget the camera.",
-  referenceFilm: {
-    title: "Desert bighorn sheep",
-    place: "Grand Canyon, Arizona",
-    src: "media/stock/grand-canyon-bighorn.mp4",
-    poster: "media/stock/bighorn-poster.jpg",
-    description:
-      "A desert bighorn ewe rests on a canyon ledge, quietly chewing and observing her surroundings.",
-    author: "National Park Service / Michael Quinn",
-    source:
-      "https://www.nps.gov/media/video/view.htm?id=AF238FB1-2B01-43AD-B419-1DA263327DBB",
-    license: "Public domain — NPS official-duty work, published June 6, 2012",
-  },
   portrait: {
     src: "media/stills/zoriah-cocio.jpg",
     alt: "Zoriah Cocio smiling outdoors in a black cap",

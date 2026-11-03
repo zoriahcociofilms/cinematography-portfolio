@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Copy, Check } from "lucide-react";
 import { projects, site, stock } from "./content/site";
-import { StockFigure, ReferenceFilm } from "./components/Media";
+import { StockFigure } from "./components/Media";
 import { ProjectDetail, ProjectGrid } from "./components/Projects";
 import { ContactCta, Eyebrow, PageIntro, TextLink } from "./components/Shared";
 import { asset } from "./lib";
@@ -40,20 +40,15 @@ export function Home() {
         </div>
         <div className="nature-grid">
           <StockFigure
-            photo={stock.owl}
+            photo={stock.hummingbird}
+            className="hummingbird-photo"
             sizes="(max-width: 640px) calc(100vw - 32px), 50vw"
           />
           <StockFigure
-            photo={stock.desert}
+            photo={stock.deer}
             sizes="(max-width: 640px) calc(100vw - 32px), 50vw"
           />
         </div>
-      </section>
-      <section
-        className="reference-film-section wrap"
-        aria-label="Arizona wildlife video"
-      >
-        <ReferenceFilm />
       </section>
       <ContactCta />
     </>

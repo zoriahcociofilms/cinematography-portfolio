@@ -28,13 +28,13 @@ The contact email is `info@zoriahcocio.com`, with direct email, copy-email, and 
 
 The About copy includes the bachelor's degree in Digital Cinematography, the owned Sony FX6, a patient observational philosophy, and conservation/environmental interests. Contact includes documentary collaborations and professional equipment partnerships. The Sony FE 400–800mm lens is clearly described as sought, not owned. No clients, credits, awards, affiliations, or completed films have been invented.
 
-Edit the short page compositions in `src/pages.tsx`, design in `src/styles.css`, and SEO text in `scripts/site-settings.mjs`. Do not hand-edit generated HTML files. The redesign has no reveal animations, autoplay background video, or large marketing sections. The homepage includes a manually played public-domain wildlife video from the Grand Canyon, kept outside Selected Work.
+Edit the short page compositions in `src/pages.tsx`, design in `src/styles.css`, and SEO text in `scripts/site-settings.mjs`. Do not hand-edit generated HTML files. The pages have no reveal animations, autoplay background video, or large marketing sections. The homepage is photographic only; the borrowed NPS video has been removed until original footage is ready.
 
 ## Photography and authenticity
 
 The Home photography is **licensed Arizona imagery**. The About page uses the profile picture supplied by Zoriah, stored at `public/media/stills/zoriah-cocio.jpg` and configured by `site.portrait`. Photographer names and license links are kept in project records rather than displayed on the pages, as requested. Photo/video reference labels are also omitted at the owner’s request; the stock media remains separate from Selected Work and is not assigned original film credits. No AI imagery was generated, no watermark was removed, and no stock frame is represented as Zoriah's work.
 
-See [the source and license inventory](public/media/stock/CREDITS.md). The current photographs were made in Tucson, Phoenix, and Saguaro National Park. Source pages and free licenses were verified November 2, 2026. Local WebP files and smaller responsive variants avoid runtime dependence on an external image CDN. Stock metadata is separate from `projects`; Selected Work contains only original published projects.
+See [the source and license inventory](public/media/stock/CREDITS.md). The current photographs show a coyote and hovering broad-billed hummingbird in Tucson, and a mule deer in its red rock habitat in Sedona. Source pages, camera metadata, and free licenses were verified November 2, 2026. Local WebP files and smaller responsive variants avoid runtime dependence on an external image CDN. Stock metadata is separate from `projects`; Selected Work contains only original published projects. Earlier stock files remain in the media library for source continuity and are not displayed.
 
 The original film portfolio is intentionally empty until actual footage and credits are provided. The earlier abstract assets remain in `public/media/placeholders/` for source continuity but are no longer displayed. The typographic social preview has no borrowed photo or film-credit claim. The visual reference informed layout restraint only; none of its images, text, credits, or business offerings were copied.
 
@@ -89,7 +89,7 @@ public/media/films/       Your original web-ready films and captions
 .github/workflows/        Existing test/build/GitHub Pages pipeline
 ```
 
-Fonts are bundled locally, with SIL Open Font License notices in `public/fonts/`. The site does not load analytics or tracking scripts. `site.referenceFilm` configures the local wildlife video and poster. The file uses native controls, is muted initially, and uses preload="none" so the full film is not fetched until requested. Existing Motion and Lucide dependencies are preserved; the redesigned pages use no animation runtime.
+Fonts are bundled locally, with SIL Open Font License notices in `public/fonts/`. The site does not load analytics or tracking scripts. The original-project `FilmPlayer` remains available for future original footage; no video is currently rendered or requested on the homepage. Existing Motion and Lucide dependencies are preserved; the pages use no animation runtime.
 
 ## Deploy only to the filmmaking account
 
@@ -153,6 +153,6 @@ npx playwright install chromium
 npm test
 ```
 
-The existing Actions pipeline runs Playwright/axe at 390px, 768px, and 1440px before deployment. Checks cover all four pages, horizontal overflow, WCAG A/AA rules, exact signature wording, omitted reference labels and photographer names, the supplied About portrait, the working inquiry email and copy action, separation of stock and original work, mobile menu keyboard behavior, contact authenticity, reduced motion, and legacy URL redirects. CI retains browser reports and screenshots.
+The existing Actions pipeline runs Playwright/axe at 390px, 768px, and 1440px before deployment. Checks cover all four pages, horizontal overflow, WCAG A/AA rules, exact signature wording, omitted reference labels and photographer names, the supplied About portrait, the working inquiry email and copy action, separation of stock and original work, replacement wildlife image loading, absence of homepage video, mobile menu keyboard behavior, contact authenticity, reduced motion, and legacy URL redirects. CI retains browser reports and screenshots, including full-page homepage views.
 
 For a production test, stop a dev server on port 4319 first so the test runner previews `dist/`. Lab checks do not establish field Core Web Vitals; those need real visitors. Keep future original media exports appropriately sized.

@@ -54,7 +54,7 @@ test("signature remains exact with no reference labels", async ({
   );
   await expect(page.locator("iframe")).toHaveCount(0);
   await expect(page.locator("body")).not.toContainText(
-    /Unsplash|License|JC Cervantes|Sidney Pearce|Royce Fonseca/,
+    /Unsplash|License|JC Cervantes|Mark Olsen|Lance Anderson/,
   );
   await expect(page.locator("body")).not.toContainText(
     /reference (photo|photograph|footage|imagery)/i,
@@ -192,29 +192,41 @@ test("reduced motion retains the static photographic homepage", async ({
     ),
   ).toBe("auto");
   await expect(page.locator(".opening-photo img")).toBeVisible();
-  await expect(page.locator("video")).toHaveCount(1);
-  await expect(page.locator("video")).not.toHaveAttribute("autoplay");
+  await expect(page.locator("video")).toHaveCount(0);
 });
 
-test("Arizona reference footage loads and plays without autoplay", async ({
+test("Arizona wildlife photographs load locally without borrowed video", async ({
   page,
   baseURL,
 }) => {
   await page.goto(baseURL!);
-  const video = page.locator(".reference-film video");
-  await expect(video).toHaveAttribute("preload", "none");
-  await expect(video).not.toHaveAttribute("autoplay");
-  await expect(video).toHaveAttribute("controls", "");
-  await expect(page.locator(".reference-film figcaption")).toContainText(
-    "Grand Canyon, Arizona",
+  await expect(page.locator("video, iframe, .reference-film")).toHaveCount(0);
+  const images = page.locator(".nature-grid img");
+  await expect(images).toHaveCount(2);
+  for (const [index, file] of [
+    "arizona-hummingbird",
+    "sedona-deer",
+  ].entries()) {
+    const image = images.nth(index);
+    await expect(image).toHaveAttribute(
+      "src",
+      new RegExp(`/stock/${file}\\.webp$`),
+    );
+    await image.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() =>
+        image.evaluate(
+          (img: HTMLImageElement) => img.complete && img.naturalWidth > 0,
+        ),
+      )
+      .toBe(true);
+  }
+  await expect(page.locator(".nature-grid figcaption").last()).toHaveText(
+    "Sedona, Arizona",
   );
-  await video.evaluate(async (element: HTMLVideoElement) => {
-    await element.play();
+  await page.evaluate(() => document.fonts.ready);
+  await page.screenshot({
+    path: `test-results/home-full-${test.info().project.name}.png`,
+    fullPage: true,
   });
-  await expect
-    .poll(() =>
-      video.evaluate((element: HTMLVideoElement) => element.currentTime),
-    )
-    .toBeGreaterThan(0);
-  await video.evaluate((element: HTMLVideoElement) => element.pause());
 });
